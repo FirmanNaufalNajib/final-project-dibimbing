@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
+import '../styles.css';
+import SideBar from "../../components/SideBar";
+import { Link } from "react-router-dom";
 
 
 
@@ -15,6 +18,8 @@ const UpdateProfile = () => {
   const navigate = useNavigate() 
 
   const {id} = useParams()
+
+  const namePage = 'Update Profile'
 
   const handleEmail = (e) => {   
     setEmail(e.target.value)
@@ -66,15 +71,29 @@ const UpdateProfile = () => {
 
   return (
     <>
-    <div className="updateProfile-container">
+    <div className="updateProfile-container d-flex">
       
+    <div className="page-bar position-fixed">
+      <SideBar namePage={namePage}/>
+      <Link to={`createBanner`}>
+        <button className="button-banner-create">Create Banner !</button>
+      </Link>
+      </div >
+
+
       <div className="form-updateProfile">
         {!!notif.length && <h3>{notif}</h3>}
-        <p>{id}</p>
-        <input defaultValue={email} className="input-updateProfile-body" type="email" placeholder="Email" onChange={handleEmail}></input>
-        <input className="input-updateProfile-body" type="text" placeholder="Full Name" onChange={handleName}></input>
-        <input className="input-updateProfile-body" type="text" placeholder="url link" onChange={handleProfilePictureUrl}></input>
-        <input className="input-updateProfiler-body" type="number" placeholder="phone" onChange={handlephoneNumber}></input>
+        <p className="input-id">{id}</p>
+        <div className="input-updateProfile">
+        <label htmlFor="email">Email</label>
+        <input defaultValue={email} id="email" className="input-updateProfile-body" type="email" placeholder="Email" onChange={handleEmail}></input>
+        <label htmlFor="name">Full Name</label>
+        <input id="name" className="input-updateProfile-body" type="text" placeholder="Full Name" onChange={handleName} defaultValue={name}></input>
+        <label htmlFor="profilePictureUrl">Profile Picture URL</label>
+        <input id="profilePictureUrl" className="input-updateProfile-body" type="text" placeholder="link profile picture" onChange={handleProfilePictureUrl} defaultValue={profilePictureUrl}></input>
+        <label htmlFor="phoneNumber">Phone Number</label>
+        <input id="phoneNumber" className="input-updateProfiler-body" type="number" placeholder="phone" onChange={handlephoneNumber} defaultValue={phoneNumber}></input>
+        </div>
 
         <button className="updateProfile-button" onClick={handleSubmit}>{loading ? 'loading..' : 'Update'}</button>
       </div>

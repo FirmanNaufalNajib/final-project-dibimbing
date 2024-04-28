@@ -1,104 +1,79 @@
 import React, { useState } from "react";
 import axios from "axios";
+import PromoForm from "../../components/PromoForm";
+import SideBar from "../../components/SideBar";
+import '../styles.css';
+import usePromoPost from "../../hooks/promo/usePromoPost";
+ const CreatePromo = () => {
 
-const CreatePromo = () => {
-  const [title, setTitle] = useState("");  
-  const [description, setDescription] = useState("");
-  const [imageURL, setImageURL] = useState("");
-  const [terms_condition, setTerms_condition] = useState(""); 
-  const [promo_code, setPromo_code] = useState(""); 
-  const [promo_discount_price, setPromo_discount_price] = useState("");
-  const [minimum_claim_price, setMinimum_claim_price] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const { 
+    title,
+    setTitle,
+    description,
+    setDescription,
+    imageUrl,
+    setImageUrl,
+    terms_condition,
+    setTerms_condition,
+    promo_code,
+    setPromo_code,
+    promo_discount_price,
+    setPromo_discount_price,
+    minimum_claim_price,
+    setMinimum_claim_price,
+    loading,
+    message,
+    handleSubmit
+  } = usePromoPost();
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    try {
-        const res = await axios.post(
-        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-promo",
-        { 
-          title: title, 
-          description: description,
-          imageUrl: imageURL,
-          terms_condition: terms_condition,
-          promo_code: promo_code,
-          promo_discount_price: promo_discount_price,
-          minimum_claim_price: minimum_claim_price
-        },
-        {headers: 
-        { 
-          apiKey: 
-        '24405e01-fbc1-45a5-9f5a-be13afcd757c', 
-          Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJ1c2VySWQiOiJmNzdiODU5My0xNDYzLTRmMzUtOGZkYS0zMzVmOTk0ZTlhZGYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTIzMjQ5NDN9.CT-qSmsXHHDyZzjJZFjmE47VLSzBUiZL3g3vTEHQlrQ'
-        }
-      }
-        );
-        console.log(res)
-        setMessage("Promo berhasil dibuat!");
-        setTitle("");
-        setImageURL("");
-      } 
-    catch (err) {
-      console.log(err)
-        setMessage("Gagal membuat promo. Silakan coba lagi.");
-      } 
-    finally {
-        setLoading(false);
-      }
-  };
+
+
+  const handleImageURLChange = (e) => setImageUrl(e.target.value)
+  const handleDescriptionChange = (e) => setDescription(e.target.value)
+  const handleTitleChange = (e) => setTitle(e.target.value)
+  const handleMinimum_claim_priceChange = (e) => setMinimum_claim_price(Number(e.target.value))
+  const handlePromo_discount_priceChange = (e) => setPromo_discount_price(Number(e.target.value))
+  const handlePromo_codeChange = (e) => setPromo_code(e.target.value)
+  const handleTerms_conditionChange = (e) => setTerms_condition(e.target.value)
+
+  const pageName = "Create Promo"
 
   return (
-    <div>
-      <h2>Create Promo</h2>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+    <div className="edit-banner">
+      <div className="page-bar position-fixed top-0 start-0 container">
+      <SideBar />
+      </div>
+
+      <div className="form-banner position-fixed top-50 start-50 translate-middle d-flex align-items-center">
+
+      <div className="input-banner">
+      <PromoForm
+      title={title}
+      description={description}
+      imageURL={imageUrl}
+      terms_condition={terms_condition}
+      promo_code={promo_code}
+      promo_discount_price={promo_discount_price}
+      minimum_claim_price={minimum_claim_price}
+      handleDescriptionChange={handleDescriptionChange}
+      handleTitleChange={handleTitleChange}
+      handleImageURLChange={handleImageURLChange}
+      handleTerms_conditionChange={handleTerms_conditionChange}
+      handlePromo_codeChange={handlePromo_codeChange}
+      handlePromo_discount_priceChange={handlePromo_discount_priceChange}
+      handleMinimum_claim_priceChange={handleMinimum_claim_priceChange}
+      pageName={pageName}
       />
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Image URL"
-        value={imageURL}
-        onChange={(e) => setImageURL(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Terms and Condition"
-        value={terms_condition}
-        onChange={(e) => setTerms_condition(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Promo Code"
-        value={promo_code}
-        onChange={(e) => setPromo_code(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Promo Discount Price"
-        value={Number(promo_discount_price)}
-        onChange={(e) => setPromo_discount_price(Number(e.target.value))}
-      />
-      <input
-        type="number"
-        placeholder="Minimun Claim Price"
-        value={Number(minimum_claim_price)}
-        onChange={(e) => setMinimum_claim_price(Number(e.target.value))}
-      />
+  
       <button onClick={handleSubmit} disabled={loading}>
         {loading ? "Loading..." : "Create Promo"}
       </button>
       {message && <p>{message}</p>}
-    </div>
+      </div>
+      </div>
+
+
+    </div> 
   );
 };
 

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import Navbar from "../../components/Navbar"
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -11,6 +12,7 @@ const Register = () => {
   const [profilePictureUrl, setprofilePictureUrl] = useState("")
   const [phoneNumber, setphoneNumber] = useState("")
   const [loading, setLoading] = useState(false)
+  const imageRegister = 'https://free4kwallpapers.com/uploads/originals/2019/05/07/ecosystem-tropical-rain-forest-fore-wallpaper.jpg'
 
   const navigate = useNavigate() 
 
@@ -76,37 +78,47 @@ const Register = () => {
 
   return (
     <>
-    <div className="register-container">
+    <div className="login-page container-fluid">
       
-      <div className="form-register">
+
+    <img className='login-img position-fixed top-50 start-50 translate-middle' src={imageRegister} alt='login'/>
+      <Navbar/>
+
+      <div className="form-login position-fixed top-50 start-50 translate-middle d-flex align-items-center container">
         {!!notif.length && <h3>{notif}</h3>}
         <input className="input-register-body" type="email" placeholder="Email" onChange={handleEmail}></input>
         <input className="input-register-body" type="text" placeholder="Full Name" onChange={handleName}></input>
         <input className="input-register-body" type="password" placeholder="Password" onChange={handlePassword}></input>
         <input className="input-register-body" type="password" placeholder="Repeat your Password" onChange={handlePassword}></input>
         <div onChange={handleRole}>
-        <input
+
+          <div className="input-register-radio">
+          <input
                 className="input-register-body"
                 type="radio"
                 name="role"
-                value= "admin"
-                
-              />Admin
-        <input
+                value= "admin"          
+              /><p>Admin</p>            
+          </div>
+        
+          <div className="input-register-radio">
+          <input
                 className="input-register-body"
                 type="radio"
                 name="role"
-                value= "user"
-                
-              />User
+                value= "user"    
+              /><p>User</p>
+          </div>
+          
+        
         </div>
-        <input className="input-register-body" type="text" placeholder="url link" onChange={handleProfilePictureUrl}></input>
+        <input className="input-register-body" type="text" placeholder="Profile Picture" onChange={handleProfilePictureUrl}></input>
         <input className="input-register-body" type="number" placeholder="phone" onChange={handlephoneNumber}></input>
 
 
         
 
-        <button className="register-button" onClick={handleSubmit}>Sign Up</button>
+        <button className="login-button" onClick={handleSubmit}>Sign Up</button>
       </div>
     </div>
     

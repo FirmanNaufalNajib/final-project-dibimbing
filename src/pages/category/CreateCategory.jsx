@@ -1,11 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
+import CategoryForm from "../../components/CategoryForm";
+import SideBar from "../../components/SideBar";
+import { useNavigate } from "react-router-dom";
 
 const CreateCategory = () => {
   const [title, setTitle] = useState("");  
   const [imageURL, setImageURL] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const pagesName = "Create Category";
+
+  const Navigate = useNavigate();
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleImageURLChange = (e) => {
+    setImageURL(e.target.value);
+  };
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -29,6 +43,7 @@ const CreateCategory = () => {
         setMessage("Category berhasil dibuat!");
         setTitle("");
         setImageURL("");
+        Navigate("/category");
       } 
     catch (err) {
       console.log(err)
@@ -40,25 +55,34 @@ const CreateCategory = () => {
   };
 
   return (
-    <div>
-      <h2>Create Category</h2>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+    <div className="create-banner">
+
+    <div className="page-bar position-fixed top-0 start-0 container">
+      <SideBar/>
+    </div>
+
+    <div className="form-banner position-fixed top-50 start-50 translate-middle d-flex align-items-center">
+
+    <div className="current-banner">
+      <img src={imageURL} alt={title} style={{ maxWidth: '50vw', maxHeight: '30vw' }} />
+    </div>
+
+    <div className="input-banner">
+      <CategoryForm
+        pagesName={pagesName}
+        title={title}
+        imageURL={imageURL}
+        handleTitleChange={handleTitleChange}
+        handleImageURLChange={handleImageURLChange}
       />
-      <input
-        type="text"
-        placeholder="Image URL"
-        value={imageURL}
-        onChange={(e) => setImageURL(e.target.value)}
-      />
+       {message && <p>{message}</p>}
       <button onClick={handleSubmit} disabled={loading}>
         {loading ? "Loading..." : "Create Promo"}
-      </button>
-      {message && <p>{message}</p>}
-    </div>
+      </button> 
+      </div>
+      </div>
+      
+      </div>
   );
 };
 

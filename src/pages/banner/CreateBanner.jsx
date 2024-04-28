@@ -1,56 +1,54 @@
 import React, { useState } from "react";
 import axios from "axios";
+import BannerForm from "../../components/BannerForm";
+import SideBar from "../../components/SideBar";
+import '../styles.css';
+import useBannerPost from "../../hooks/banner/useBannerPost";
 
 const CreateBanner = () => {
-  const [title, setTitle] = useState("");
-  const [imageURL, setImageURL] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const {
+    title,
+    setTitle,
+    imageURL,
+    setImageURL,
+    loading,
+    message,
+    handleTitleChange,
+    handleImageURLChange,
+    handleSubmit
+  } = useBannerPost();
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    try {
-      // Kirim permintaan API untuk membuat banner
-      const res = await axios.post(
-      "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-banner",
-      { name: title, imageUrl: imageURL },
-      {headers: 
-      { 
-        apiKey: 
-      '24405e01-fbc1-45a5-9f5a-be13afcd757c', 
-        Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJ1c2VySWQiOiJmNzdiODU5My0xNDYzLTRmMzUtOGZkYS0zMzVmOTk0ZTlhZGYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTIzMjQ5NDN9.CT-qSmsXHHDyZzjJZFjmE47VLSzBUiZL3g3vTEHQlrQ'
-      }
-    }
-      );
-      setMessage("Banner berhasil dibuat!");
-      setTitle("");
-      setImageURL("");
-    } catch (error) {
-      setMessage("Gagal membuat banner. Silakan coba lagi.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const pagesName = "Create Banner";
 
   return (
-    <div>
-      <h2>Create Banner</h2>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Image URL"
-        value={imageURL}
-        onChange={(e) => setImageURL(e.target.value)}
+    <div className="create-banner">
+
+      <div className="page-bar position-fixed top-0 start-0 container">
+      <SideBar/>
+      </div>
+      
+      <div className="form-banner position-fixed top-50 start-50 translate-middle d-flex align-items-center">
+
+      <div className="current-banner">
+        <img src={imageURL} alt={title} style={{ maxWidth: '50vw', maxHeight: '30vw' }} />
+      </div>
+      
+      <div className="input-banner">
+      <BannerForm
+        pagesName={pagesName}
+        title={title}
+        imageURL={imageURL}
+        handleTitleChange={handleTitleChange}
+        handleImageURLChange={handleImageURLChange}
+        setTitle={setTitle}
+        setImageURL={setImageURL}
       />
       <button onClick={handleSubmit} disabled={loading}>
         {loading ? "Loading..." : "Create Banner"}
       </button>
+      </div>
+      </div>
+
       {message && <p>{message}</p>}
     </div>
   );

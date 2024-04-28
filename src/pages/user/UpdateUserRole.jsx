@@ -1,8 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate, useParams} from "react-router-dom"
-
-
+import SideBar from "../../components/SideBar"
 
 const UpdateUserRole = () => {
    const [role, setRole] = useState("")
@@ -12,6 +11,8 @@ const UpdateUserRole = () => {
    const navigate = useNavigate() 
 
    const {id} = useParams()
+
+   const namePage = "Update Role"
 
    const handleUpdateUserRole = (e) => {
     setRole(e.target.value)
@@ -50,28 +51,36 @@ const UpdateUserRole = () => {
 
   return (
 
-    <>
-    <h1>Update Role</h1>
+    <div className="updateRole-container">
+    <div className="page-bar"><SideBar namePage={namePage}/></div>
+    
+
+
+    
     {!!notif.length && <h3>{notif}</h3>}
-      <div onChange={handleUpdateUserRole}>
+      <div className="form-updateProfile" onChange={handleUpdateUserRole}>
+      <p className="input-id">{id}</p>
+
+      <div className="input-updateRole">
           <input
-                  className="input-register-body"
+                  className="input-updateRole-body"
                   type="radio"
                   name="role"
                   value= "admin"
                   
                 />Admin
           <input
-                  className="input-register-body"
+                  className="input-updateRole-body"
                   type="radio"
                   name="role"
                   value= "user"
                   
                 />User
           </div>
+      </div>
       
       <button onClick={handleSubmitUserRole}>submit</button>
-    </>
+    </div>
   )
 }
 

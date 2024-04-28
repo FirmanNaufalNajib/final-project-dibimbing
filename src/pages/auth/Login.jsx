@@ -1,12 +1,14 @@
 import axios from 'axios'
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import Navbar from '../../components/Navbar'
 
 const Login = () => {
   const [email, setEmail] = useState("") 
   const [password, setPassword] = useState("") 
   const [notif, setNotif] = useState("")
   const [loading, setLoading] = useState(false)
+  const imageLogin = 'https://a.cdn-hotels.com/gdcs/production64/d1688/8eac9694-13d8-4228-bf14-9493e562ad66.jpg'
 
 
   const handleEmail = (e) => { 
@@ -33,35 +35,51 @@ const Login = () => {
     }
       })
       //console.log(res.data)
-      localStorage.setItem("token", res.data.token)
+      localStorage.setItem("token", res.data?.token)
+      localStorage.setItem("name", res.data?.data?.name)
+      localStorage.setItem("role", res.data?.data?.role)
+
+
+
       setLoading(false)
       setNotif('welcome.. '+ res.data.data.name)
-      console.log(res)
+
+      if (res.data.data.role === 'admin') {
+        navigate('/dashboard')
+      } else {
+        navigate('/')
+      }
       
-      //setTimeout(() => {navigate("/users")}, 1000)
+      
 
     }  catch (err) {
       console.log(err)
     } 
   }
 
+ 
 
   return ( 
     <>
-      <div className="login-container">
-        <img className="form-image" alt="administration" />
-
-        <div className="form-login">
+      <div className="login-page container-fluid" >
+        
+       
+      <img className='login-img position-fixed top-50 start-50 translate-middle' src={imageLogin} alt='login'/>
+      <Navbar/>
+        <div className="form-login position-fixed top-50 start-50 translate-middle d-flex align-items-center container">
         {!!notif.length && <h3>{notif}</h3>}
           <input className="input-body" type="email" placeholder="Email" onChange={handleEmail}/>
           <input className="input-body" type="password" placeholder="Password" onChange={handlePassword}/>         
           <button className="login-button" onClick={handleLogin}>{loading ? 'loading..':'Login'}</button>
-        </div>
 
-        <p>or go to :</p>
+          <p>or</p>
         <Link to="/register">      
           <h4>Sign Up</h4>
         </Link>
+
+        </div>
+        
+
       </div>
     </>
   )

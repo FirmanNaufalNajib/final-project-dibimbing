@@ -1,41 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import SideBar from '../../components/SideBar';
+import useActivitiesGet from '../../hooks/activity/useActivityGet';
+import Navbar from '../../components/Navbar';
+import '../styles.css';
 
 const Activities = () => {
-  const [activities, setActivities] = useState([]);
-
-  useEffect(() => {
-    const fetchActivities = async () => {
-      try {
-        const res = await axios.get(
-          'https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activities', 
-          {headers: {apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c'}}
-      );
-        console.log(res)
-        setActivities(res.data.data);
-      } catch (error) {
-        console.error('Error fetching activities:', error);
-      }
-    };
-
-    fetchActivities();
-  }, []);
+  const { activities, loading, error } = useActivitiesGet();
+  const namePages = "Activities";
+  const role = localStorage.getItem("role")
 
   return (
-    <div>
-      <h1>List of Promos</h1>
+    <div lassName="activity-page d-flex">
+
+{role === "admin" ? 
+      <div className='page-bar position-fixed' >
+        <SideBar namePage="Promos" />
+        <Link to={`createPromo`}>
+          <button className="button-promo-create">Create Promo!</button>
+        </Link>
+      </div>
+      : <Navbar/>}
+
+      {loading ? (
+        <p className="loading">Loading...</p>
+      ) : error ? (
+        <p className="error">{error}</p>
+      ) : (
+      <div className="activity-page-content d-flex ">
+
+      <div className="activity-list container row">
       {activities.map(activity => (
-        <div key={activity.id}>
+        <div className="activity-item container justify-content-center" key={activity.id}>
+          <div className="activity-info-1 justify-content-center">
+          <img className="activity-image mx-auto d-block" src={activity.imageUrls[1]} alt={activity.title} style={{ maxWidth: '700px' }} />
+          </div>
+          <div className="activity-info-2 container">
           <h2>{activity.title}</h2>
-          <img src={activity.imageUrls[1]} alt={activity.title} style={{ maxWidth: '700px' }} />
-          <p>{activity.description}</p>
-  
-          <Link to={`activityDetail/${activity.id}`}>
-            <button>More Detail</button>
+          </div>
+          <Link to={`activityUser/${activity.id}`}>
+             <i class="button-activity-edit bi bi-card-list d-flex justify-content-end"></i>
           </Link>
         </div>
       ))}
+      </div>
+      </div>
+    )}
+      
     </div>
   );
 };

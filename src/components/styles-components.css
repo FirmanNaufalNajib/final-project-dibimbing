@@ -1,0 +1,201 @@
+/* styles.css */
+
+.sidebar {
+  background-color: #002664;
+  padding: 10px;
+  height: 92.5vh; /* Set the height to 85% of the viewport height */
+  overflow-y: auto; /* Add scrollbar if content overflows */
+  
+}
+
+.sidebar h1 {
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+  text-align: center;
+  border-bottom: #ffffff solid 1px;
+  color: #ffffff;
+}
+
+.sidebar h5 {
+  margin-bottom: 10px;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  display: block;
+  text-decoration: none;
+  color: #ffffff; /* Warna teks menu */
+  font-size: 15px;
+}
+
+/* Style the links */
+.sidebar a {
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+}
+
+.sidebar-menu{
+  border-bottom: #ffffff solid 1px;
+
+}
+.sidebar a:hover {
+color: blue;
+}
+
+.sidebar h5:hover {
+color: blue;
+ 
+}
+
+.back {
+  margin-bottom: 0;
+  margin-top: 380px;
+  border-bottom: #ffffff solid 1px;
+  display: block;
+  left: 0;
+  right: 0;
+
+}
+
+/* user */
+.user-card {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border: 1px solid #ccc; 
+  padding: 10px;
+  gap: 10px;
+  
+}
+
+.user-img {
+  object-fit: cover;
+  width: 70px;
+  max-height: 70px;
+
+  border: #294b81 solid 1px;
+  border-radius: 50px;
+  
+}
+.user-card p {
+  font-size:90%;
+  color: #002664;
+  width: 150px;
+}
+
+.role-text {
+  width: 70px;
+}
+
+/* Category Option */
+.category-option {
+  margin-bottom: 20px;
+}
+
+.category-select {
+  width: 200px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* category form */
+
+
+/* Promo Form */
+
+.promo-form-card {
+  color: #002664;
+}
+.promo-form-card h2 {
+  text-align: center;
+}
+.promo-form-card input {
+  margin: 11px;
+
+}
+
+
+/* Navbar */
+
+/* styles-components.css */
+
+.navbar {
+  background-color: #33333360;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  
+
+}
+
+.navbar h1 {
+  margin: 0;
+  color: #ffffff;;
+  
+}
+
+.navbar-menu {
+  display: flex;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+}
+
+.navbar-menu h5 {
+  margin: 0 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-menu h5:hover {
+  color: #ffd700; /* Change color on hover */
+}
+
+/* Modal  */
+.modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal1 {
+  background: white;
+  width: 80vw;
+  max-width: 400px;
+  border-radius: var(--radius);
+  padding: 2rem 1rem;
+  text-align: center;
+  position: absolute;
+  z-index: 9999;
+}
+.modal1 h4 {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+.modal1 .clear-btn,
+.modal1 .confirm-btn {
+  margin-top: 1rem;
+}
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-container :hover {
+  background-color: #ffd700;
+}

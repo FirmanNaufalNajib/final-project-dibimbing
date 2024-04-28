@@ -1,24 +1,38 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import PromoForm from "../../components/PromoForm";
+import SideBar from "../../components/SideBar";
+import '../styles.css';
+import { useNavigate } from "react-router-dom";
+import usePromoPost from "../../hooks/promo/usePromoPost";
+import usePromoGet from "../../hooks/promo/usePromoGet";
+import Modal from "../../components/Modal";
+import { close } from '../../features/modalSlice'
+import { useDispatch } from "react-redux";
 
 const UpdatePromo = () => {
-  const { id } = useParams();
-  const [title, setTitle] = useState("");
-  const [imageURL, setImageURL] = useState("");
-  const [loading, setLoading] = useState(true);
+  const pageName = "Update Promo";
+  const Navigate = useNavigate();
   const [error, setError] = useState("");
-  const [description, setDescription] = useState("");
-  const [terms_condition, setTerms_condition] = useState(""); 
-  const [promo_code, setPromo_code] = useState(""); 
-  const [promo_discount_price, setPromo_discount_price] = useState("");
-  const [minimum_claim_price, setMinimum_claim_price] = useState("");
+  const { id } = useParams();
+
+const handleImageUrlChange = (e) => setImageUrl(e.target.value)
+const handleDescriptionChange = (e) => setDescription(e.target.value)
+const handleTitleChange = (e) => setTitle(e.target.value)
+const handleMinimum_claim_priceChange = (e) => setMinimum_claim_price(Number(e.target.value))
+const handlePromo_discount_priceChange = (e) => setPromo_discount_price(Number(e.target.value))
+const handlePromo_codeChange = (e) => setPromo_code(e.target.value)
+const handleTerms_conditionChange = (e) => setTerms_condition(e.target.value)
+
+const [isModalOpen, setIsModalOpen] = useState(false);
+const dispatch = useDispatch()
 
   useEffect(() => {
-    const fetchActivity = async () => {
+    const fetchPromo = async () => {
       try {
         const res = await axios.get(
-          `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activity/${id}`,
+          `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/promo/${id}`,
           {headers: 
             {apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c'},
           }
@@ -26,33 +40,44 @@ const UpdatePromo = () => {
         console.log(res)
         const bannerData = res.data.data;
         setTitle(bannerData.name);
-        setImageURL(bannerData.imageUrl);
+        setImageUrl(bannerData.imageUrl);
       } catch (error) {
         setError("Gagal memuat data banner. Silakan coba lagi.");
       } finally {
-        setLoading(false);
+        //setLoading(false);
       }
     };
 
-    fetchActivity();
+    fetchPromo();
   }, [id]);
 
+  const { 
+    title,
+    setTitle,
+    description,
+    setDescription,
+    imageUrl,
+    setImageUrl,
+    terms_condition,
+    setTerms_condition,
+    promo_code,
+    setPromo_code,
+    promo_discount_price,
+    setPromo_discount_price,
+    minimum_claim_price,
+    setMinimum_claim_price,
+    loading,
+    setLoading,
+    message,
+    setMessage,
+    handleSubmit
+  } = usePromoPost();
 
-  const handleSubmit = async () => {
 
-    const payload = {
-      title: title, 
-      description: description,
-      imageUrl: imageURL,
-      terms_condition: terms_condition,
-      promo_code: promo_code,
-      promo_discount_price: promo_discount_price,
-      minimum_claim_price: minimum_claim_price
-      
-    }
+  const handleDelete = async () => {
     try {
-      const res = await axios.post(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-promo/${id}`, payload,
+      const res = await axios.delete(
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-promo/${id}`,
         {
           headers: 
             { 
@@ -63,89 +88,72 @@ const UpdatePromo = () => {
             }
         }
       );
-      console.log("Banner berhasil diperbarui:", res.data);
-      // Redirect to banner list page or show success message
+      console.log("promo berhasil dihapus:", res.data);
+      dispatch(close())
+      Navigate("/promos");
+      
+
     } catch (error) {
-      console.error("Gagal memperbarui banner:", error);
-      // Handle error state or show error message
+      console.error("Gagal menghapus promo:", error);
+      setMessage("Gagal menghapus promo. Silakan coba lagi.");
+      
     }
   };
 
-  const handleDelete = async () => {
-    try {
-      const res = await axios.delete(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-promo/${id}`,
-        {
-          headers: 
-            { 
-              apiKey: 
-            '224405e01-fbc1-45a5-9f5a-be13afcd757c', 
-              Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJ1c2VySWQiOiJmNzdiODU5My0xNDYzLTRmMzUtOGZkYS0zMzVmOTk0ZTlhZGYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTIzMjQ5NDN9.CT-qSmsXHHDyZzjJZFjmE47VLSzBUiZL3g3vTEHQlrQ'
-            }
-        }
-      );
-      console.log("Banner berhasil dihapus:", res.data);
-      // Redirect to banner list page or show success message
-    } catch (error) {
-      console.error("Gagal menghapus banner:", error);
-      // Handle error state or show error message
-    }
+  const handleConfirm = () => {
+    handleDelete()
+  
   };
+
+  const handleCancel = () => {
+    dispatch(close());
+  };
+
+  const clearItemAndCloseModal = () => {; 
+    setIsModalOpen(true); }
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
-  return (
-    <div>
-      <h2>Update Banner</h2>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Image URL"
-        value={imageURL}
-        onChange={(e) => setImageURL(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Terms and Condition"
-        value={terms_condition}
-        onChange={(e) => setTerms_condition(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Promo Code"
-        value={promo_code}
-        onChange={(e) => setPromo_code(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Promo Discount Price"
-        value={Number(promo_discount_price)}
-        onChange={(e) => setPromo_discount_price(Number(e.target.value))}
-      />
-      <input
-        type="number"
-        placeholder="Minimun Claim Price"
-        value={Number(minimum_claim_price)}
-        onChange={(e) => setMinimum_claim_price(Number(e.target.value))}
-      />
-      <img src={imageURL} alt={title} />
-      <h3>{title}</h3>
-      <button onClick={handleSubmit}>Update Promo</button>
-      <button onClick={handleDelete}>Delete Promo</button>
+  console.log(isModalOpen)
 
+  return (
+    <div className="edit-banner">
+      {isModalOpen && <Modal message={message} handleConfirm={handleConfirm} handleCancel={handleCancel} isOpen={isModalOpen} onConfirm={clearItemAndCloseModal} onCancel={() => setIsModalOpen(false)} />}
+      <div className="page-bar position-fixed top-0 start-0 container">
+      <SideBar />
+      <button class="btn btn-danger bi bi-trash3" onClick={() => setIsModalOpen(true)}>Delete Promo</button> 
+      </div>
+
+      <div className="form-banner">
+
+
+      <div className="current-banner">
+        <img src={imageUrl} alt={title} style={{ maxWidth: '50vw', maxHeight: '30vw' }} />
+      </div>
+
+      <div className="input-banner">
+        <PromoForm
+        pageName={pageName}
+        title={title}
+        description={description}
+        imageUrl={imageUrl}
+        terms_condition={terms_condition}
+        promo_code={promo_code}
+        promo_discount_price={promo_discount_price}
+        minimum_claim_price={minimum_claim_price}
+        handleDescriptionChange={handleDescriptionChange}
+        handleTitleChange={handleTitleChange}
+        handleimageUrlChange={handleImageUrlChange}
+        handleTerms_conditionChange={handleTerms_conditionChange}
+        handlePromo_codeChange={handlePromo_codeChange}
+        handlePromo_discount_priceChange={handlePromo_discount_priceChange}
+        handleMinimum_claim_priceChange={handleMinimum_claim_priceChange}
+        />    
+        {message && <p className="message-result">{message}</p>}
+        <button onClick={handleSubmit}>Update Promo</button>
+      </div>
+      </div>
     </div>
   );
 };

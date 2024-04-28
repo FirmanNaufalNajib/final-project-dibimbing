@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import SideBar from "../../components/SideBar";
+import BannerForm from "../../components/BannerForm";
+import '../styles.css';
+import { useNavigate } from "react-router-dom";
+import { close } from '../../features/modalSlice'
+import Modal from "../../components/Modal";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const UpdateBanner = () => {
   const { id } = useParams();
@@ -8,6 +16,16 @@ const UpdateBanner = () => {
   const [imageURL, setImageURL] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const pagesName = "Update"
+
+  const Navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     const fetchBanner = async () => {
@@ -65,10 +83,12 @@ const UpdateBanner = () => {
         }
       );
       console.log("Banner berhasil diperbarui:", res.data);
-      // Redirect to banner list page or show success message
+      setMessage(res.data.message,"Banner berhasil diperbarui");
+      Navigate("/banner");
+
     } catch (error) {
       console.error("Gagal memperbarui banner:", error);
-      // Handle error state or show error message
+      setMessage(error.message, "Gagal memperbarui banner. Silakan coba lagi.")
     }
   };
 
@@ -87,35 +107,64 @@ const UpdateBanner = () => {
         }
       );
       console.log("Banner berhasil dihapus:", res.data);
-      // Redirect to banner list page or show success message
+      dispatch(close());
+      setMessage("banner berhasil dihapus");
+      Navigate("/banner");
+
     } catch (error) {
       console.error("Gagal menghapus banner:", error);
-      // Handle error state or show error message
+      setMessage("Gagal menghapus banner. Silakan coba lagi.");
     }
   };
 
+  const handleConfirm = () => {
+    handleDelete()
+  
+  };
+
+  const handleCancel = () => {
+    dispatch(close());
+  };
+
+  const clearItemAndCloseModal = () => {; 
+    setIsModalOpen(true); }
+
+
+  console.log(isModalOpen)
+ 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h2>Update Banner</h2>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={handleTitleChange}
+    <div className="edit-banner">
+      <section className="edit-banner-title">
+        {isModalOpen && <Modal message={message} handleConfirm={handleConfirm} handleCancel={handleCancel} isOpen={isModalOpen} onConfirm={clearItemAndCloseModal} onCancel={() => setIsModalOpen(false)} />}
+      </section>
+      <div className="page-bar container">
+      <SideBar />
+      <button class="btn btn-danger bi bi-trash3" onClick={() => setIsModalOpen(true)}>Delete Banner</button>
+      </div>
+
+      <div className="form-banner d-flex align-items-center">
+      <div className="current-banner">
+        <img src={imageURL} alt={title} style={{ maxWidth: '50vw', maxHeight: '30vw' }} />
+      </div>
+
+      <div className="input-banner">
+      <BannerForm
+        id={id}
+        pagesName={pagesName}
+        title={title}
+        imageURL={imageURL}
+        handleTitleChange={handleTitleChange}
+        handleImageURLChange={handleImageURLChange}
       />
-      <input
-        type="text"
-        placeholder="Image URL"
-        value={imageURL}
-        onChange={handleImageURLChange}
-      />
-      <img src={imageURL} alt={title} />
-      <h3>{title}</h3>
-      <button onClick={handleSubmit}>Update Banner</button>
-      <button onClick={handleDelete}>Delete Banner</button>
+      {message && <p className="message-result">{message}</p>}
+      <button  onClick={handleSubmit}>Update Banner</button>
+      </div>
+
+      </div>
+
 
     </div>
   );
