@@ -44,11 +44,11 @@ const Login = () => {
       setLoading(false)
       setNotif('welcome.. '+ res.data.data.name)
 
-      if (res.data.data.role === 'admin') {
-        navigate('/dashboard')
-      } else {
-        navigate('/')
-      }
+      // if (res.data.data.role === 'admin') {
+      //   navigate('/dashboard')
+      // } else {
+      //   navigate('/')
+      // }
       
       
 

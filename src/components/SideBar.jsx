@@ -1,12 +1,25 @@
 import { Link } from "react-router-dom"
 import './styles-components.css'
+import { useNavigate } from "react-router-dom"
+import useLogoutGet from "../hooks/useLogoutGet"
 const SideBar = (props) => {
   const userLogIn = localStorage.getItem("name")
+
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  const handleLogout = useLogoutGet();
+
 
   return (
     <div className="sidebar">
       <h1>{props.namePage}</h1>
+      <div className="sidebar-username d-flex">
+      <button><i class="bi bi-arrow-bar-left" ></i></button>
       <p>hai <b>{userLogIn}</b></p>
+      </div>
       <p></p>
     <div className="sidebar-menu">
     <Link to="/banner">
@@ -30,11 +43,17 @@ const SideBar = (props) => {
             <h5>Category</h5>
           </Link>
     </div>
-      
-      <Link className="back" to="/dashboard">
-      <i class="bi bi-arrow-bar-left"></i>
-        <h5>Dashboard</h5>
-      </Link>
+    
+
+  <div className="back">
+      <button className="back-button">
+        <i class="bi bi-arrow-counterclockwise" onClick={goBack}>back</i>
+      </button>
+ </div>
+        
+
+    
+
 
 
 

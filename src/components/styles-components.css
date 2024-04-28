@@ -34,7 +34,17 @@
   color: #ffffff;
   display: flex;
 }
-
+.sidebar-username {
+  margin-bottom: 20px;
+  color: #ffffff;
+  gap: 10px;
+  padding: 15px;
+  border-bottom: #ffffff solid 1px;
+}
+.sidebar-username button {
+  background-color: transparent;
+  border: #ffffff solid 1px;
+}
 .sidebar-menu{
   border-bottom: #ffffff solid 1px;
 
@@ -50,12 +60,14 @@ color: blue;
 
 .back {
   margin-bottom: 0;
-  margin-top: 380px;
   border-bottom: #ffffff solid 1px;
   display: block;
   left: 0;
   right: 0;
+}
 
+.back-button {
+  background-color: transparent;
 }
 
 /* user */

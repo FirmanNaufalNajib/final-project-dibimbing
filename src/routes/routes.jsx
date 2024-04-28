@@ -58,12 +58,12 @@ export const RouteList = [
   },
   {
     path: "/allUser/updateProfile/:id",
-    element: <UpdateProfile/>{""},
+    element: <UpdateProfile/>
 
   },
   {
     path: "/allUser/updateUserRole/:id",
-    element: <UpdateUserRole/>{""}
+    element: <UpdateUserRole/>
 
   },
   {
@@ -78,7 +78,7 @@ export const RouteList = [
   },
   {
     path: "/banner/updateBanner/:id",
-    element: <UpdateBanner/>{""}
+    element: <UpdateBanner/>
 
   },
   {
@@ -88,7 +88,7 @@ export const RouteList = [
   },
   {
     path: "/promos/promosById/:id",
-    element: <PromoById/>{""}
+    element: <PromoById/>
 
   },
   {
@@ -98,7 +98,7 @@ export const RouteList = [
   },
   {
     path: "/promos/promosById/:id/updatePromo/:id",
-    element: <UpdatePromo/>{""}
+    element: <UpdatePromo/>
 
   },
   {
@@ -108,7 +108,7 @@ export const RouteList = [
   },
   {
     path: "/category/categoryDetail/:id",
-    element: <CategoryDetail/>{""}
+    element: <CategoryDetail/>
 
   },
   {
@@ -118,7 +118,7 @@ export const RouteList = [
   },
   {
     path: "/category/categoryDetail/:id/updateCategory/:id",
-    element: <UpdateCategory/>{""}
+    element: <UpdateCategory/>
 
   },
   {
@@ -128,12 +128,12 @@ export const RouteList = [
   },
   {
     path: "/activities/activityDetail/:id",
-    element: <ActivityDetail/>{""}
+    element: <ActivityDetail/>
 
   },
   {
     path: "/activities/activityDetail/:id/updateActivity/:id",
-    element: <UpdateActivity/>{""}
+    element: <UpdateActivity/>
 
   },
   {
@@ -143,12 +143,12 @@ export const RouteList = [
   },
   {
     path: "/activities/activityByCategory/:id",
-    element: <ActivityByCategoryId/>{""}
+    element: <ActivityByCategoryId/>
 
   },
   {
     path: "/activities/activityUser/:id",
-    element: <ActivityUser/>{""}
+    element: <ActivityUser/>
 
   },
   {

@@ -755,6 +755,9 @@
   color: rgb(253, 250, 250);
   
 }
+.home-banner h1{
+  color: white
+}
 .home-banner a {
   text-decoration: none;
   margin: 20px;
