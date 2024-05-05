@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import usePromoGet from '../hooks/promo/usePromoGet';
 import useActivitiesGet from '../hooks/activity/useActivityGet';
+import useLoggeduserGet from '../hooks/user/useLoggeduserGet';
 import CategoryOption from '../components/CategoryOption';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ const Home = () => {
 
   const { promos} = usePromoGet();
   const { activities } = useActivitiesGet();
+  const { logUser } = useLoggeduserGet();
   
   const token = localStorage.getItem("token")
   const name = localStorage.getItem("name")
@@ -50,6 +52,36 @@ const Home = () => {
             </div>
       </div>
       <Navbar />
+
+
+      <div className='logged-home carousel-caption d-none d-md-block fs-2 text-dark-emphasis position-absolute top-50 start-50 translate-middle rounded-circle'>
+        <h4>friends who logged in:</h4>
+        {logUser.length > 0 ? (
+        logUser.slice(0, 3).map((user) => {
+          if (user.role === "user") {
+            return (
+              <div className="user-item container d-flex flex-row justify-content-between align-items-center">
+
+                <UserCard
+                  key={user.id}
+                  id={user.id}
+                  name={user.name}
+                  email={user.email}
+                  phoneNumber={user.phoneNumber}
+                  profilePictureUrl={user.profilePictureUrl}
+                  role={user.role}
+                />
+
+              </div>
+            );
+          }
+        })
+      ) : (
+        <h2 className='no-logged'>-Nobody-</h2>
+      )}
+    </div>
+
+
 
 <div className='content-home-page container-fluid'>
 

@@ -1302,3 +1302,16 @@ p {
   margin-left: 300px;
 
 }
+
+/* logged-in  */
+
+
+
+.no-logged {
+  padding: 10px;
+  background-color: #00251a57;
+  border-radius: 5px;
+
+
+
+}

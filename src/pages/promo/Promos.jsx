@@ -15,14 +15,14 @@ const Promos = () => {
   return (
     <div className='promos-page'>
 
-      {/* {role === "admin" ?  */}
+       {role === "admin" ?  
       <div className='page-bar position-fixed' >
         <SideBar namePage="Promos" />
         <Link to={`createPromo`}>
           <button className="button-create">Create Promo!</button>
         </Link>
       </div>
-      {/* : <Navbar/>} */}
+       : <Navbar/>} 
 
       <div className='promos-page-content d-flex'>
         {loading ? (

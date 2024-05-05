@@ -51,7 +51,15 @@ const SideBar = (props) => {
       </button>
  </div>
         
+<div className="sidebar-menu-general">
+  <Link to="/dashboard">
+    <i className="bi bi-pc">Dashboard</i>
+  </Link>
 
+  <Link to="/">
+    <i className="bi bi-pc">Home</i>
+  </Link>
+</div>
     
 
 

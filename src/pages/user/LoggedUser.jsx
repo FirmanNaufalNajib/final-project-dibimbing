@@ -1,9 +1,6 @@
-import axios from "axios"
-import { useState, useEffect } from "react"
 import UserCard from "../../components/UserCard";
 import SideBar from "../../components/SideBar";
 import useLoggeduserGet from "../../hooks/user/useLoggeduserGet";
-
 
 const LoggedUsers = () => {
 

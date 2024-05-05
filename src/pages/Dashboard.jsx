@@ -1,6 +1,5 @@
 import axios from "axios"
 import SideBar from "../components/SideBar"
-import CategoryOption from "../components/CategoryOption"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { useState } from "react"
@@ -11,9 +10,9 @@ import useActivitiesGet from "../hooks/activity/useActivityGet"
 
 const Dashboard = () => {
 
-  // const token = localStorage.getItem("token") 
-  // const name = localStorage.getItem("name")
-  // cosnt const role = localStorage.getItem("role")
+  const token = localStorage.getItem("token") 
+  const name = localStorage.getItem("name")
+  const role = localStorage.getItem("role")
   const navigate = useNavigate();
   const namePage = "Dashboard"
 
@@ -94,7 +93,7 @@ const Dashboard = () => {
 
       
       <div className="banner-list-dashboard container row">
-      <h2 >Banners</h2>
+      <Link to={'/banner'}><h2>Banners</h2></Link>
       {banners.slice(0, 3).map((banner) => (
             <div className="banner-item container justify-content-center" key={banner.id}>
 
@@ -118,7 +117,7 @@ const Dashboard = () => {
     
       
       <div className='promos-list-dashboard container row'>
-      <h2>Promos</h2>
+      <Link to={'/promos'}><h2>Promos</h2></Link>
         {promos.slice(0, 3).map(promo => (
           <div class="promos-item container justify-content-center card text-bg-transparent" >
             <Link to={`/promos/promosById/${promo.id}`}>
@@ -141,7 +140,7 @@ const Dashboard = () => {
       
       
       <div  className="user-page-content container">
-      <h2>Users</h2>
+      <Link to={'/allUser'}><h2>Users</h2></Link>
             {allUser.slice(0, 3).map((user) => (
       user.role === "user" && (
           <div className="user-item container d-flex flex-row justify-content-between align-items-center">
@@ -170,7 +169,7 @@ const Dashboard = () => {
 
      
       <div className="activity-list-dashboard container row">
-      <h2>Activities</h2>
+      <Link to={'/activities'}><h2>Activities</h2></Link>
       {activities.slice(0, 3).map(activity => (
         <div className="activity-item container justify-content-center" key={activity.id}>
           <div className="activity-info-1 justify-content-center">
@@ -188,7 +187,7 @@ const Dashboard = () => {
 
       
       <div className="category-list-dashboard container row">
-      <h2>Categories</h2>
+      <Link to={'/category'}><h2>Categories</h2></Link>
       {categories.slice(0, 3).map(category => (
         <div className="category-item container justify-content-center" key={category.id}>
 

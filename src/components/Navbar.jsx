@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useEffect } from "react"; // tambahkan useEffect
+import { useEffect } from "react"; 
 import useLogoutGet from "../hooks/auth/useLogoutGet"
 import './styles-components.css'
 
@@ -8,11 +8,11 @@ const Navbar = () => {
   const userLogIn = localStorage.getItem("name")
   const handleLogout = useLogoutGet();
 
-  // Menggunakan useEffect untuk menambahkan event listener saat komponen dimuat
+  
   useEffect(() => {
     const handleNavbarColor = () => {
       const navbar = document.querySelector(".navbar")
-      if (window.scrollY > 300) {
+      if (window.scrollY > 250) {
         navbar.classList.add("navbar-scroll")
       } else {
         navbar.classList.remove("navbar-scroll")
@@ -20,11 +20,11 @@ const Navbar = () => {
     }
     window.addEventListener('scroll', handleNavbarColor);
 
-    // Membersihkan event listener saat komponen dibongkar
+    
     return () => {
       window.removeEventListener('scroll', handleNavbarColor);
     };
-  }, []); // [] menandakan bahwa effect hanya dijalankan saat komponen dimuat
+  }, []); 
 
   return (
     <div className="navbar fixed-top"> 

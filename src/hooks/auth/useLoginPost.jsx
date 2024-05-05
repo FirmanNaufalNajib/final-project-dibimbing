@@ -10,6 +10,8 @@ const useLoginPost = () => {
   const [loading, setLoading] = useState(false)
   const imageLogin = 'https://a.cdn-hotels.com/gdcs/production64/d1688/8eac9694-13d8-4228-bf14-9493e562ad66.jpg'
 
+  const navigate = useNavigate()  
+
   const handleLogin = async () => { 
     
     const payload = {
@@ -35,11 +37,15 @@ const useLoginPost = () => {
       setLoading(false)
       setNotif('welcome.. '+ res.data.data.name)
 
-      // if (res.data.data.role === 'admin') {
-      //   navigate('/dashboard')
-      // } else {
-      //   navigate('/')
-      // }
+      if (res.data.data.role === 'admin') {
+        setTimeout(() => {
+          navigate("/dashboard")
+           }, 1500)
+      } else {
+        setTimeout(() => {
+          navigate("/")
+           }, 1500)
+      }
       
       
 
