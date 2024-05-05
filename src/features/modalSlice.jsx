@@ -20,7 +20,7 @@ export const open = () => {
 
 export const close = () => {
   return { 
-      type: 'modal/cancelModal',};
+      type: 'modal/cancelModal'};
     }
 
 export default modalReducer

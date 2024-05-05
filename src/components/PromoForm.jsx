@@ -3,7 +3,7 @@ const PromoForm = (props) => {
   return (
 
     <div className="promo-form-card">
-    <h2>{props.pageName}</h2>
+    <h2>{props.namePage}</h2>
 
     <label for="title">Title:</label> <br />
     <input
@@ -24,13 +24,14 @@ const PromoForm = (props) => {
       onChange={props.handleDescriptionChange}
     /><br />
 
-    <label for="imageURL">Image URL:</label><br />
+    <label for="imageURL">Image:</label><br />
     <input
-      type="text"
+      type="file"
       id="imageURL"
       placeholder="Image URL"
-      value={props.imageURL}
-      onChange={props.handleImageURLChange}
+      accept="image/*"
+      //value={props.imageURL}
+      onChange={props.handleFileChange}
     /><br />
 
     <label for="termsCondition">Terms and Condition:</label><br />

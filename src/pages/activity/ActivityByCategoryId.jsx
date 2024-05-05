@@ -1,47 +1,40 @@
-import { useState } from "react"
-import { useEffect } from "react"
-import axios from "axios"
-import { useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
-import '../styles.css';
+
+import { useParams, useNavigate} from "react-router-dom"
 import Navbar from "../../components/Navbar"
+import CategoryOption from "../../components/CategoryOption"
+import useCategorybyIdAll from "../../hooks/category/useCategorybyIdAll"
+import useActivitybyCategory from "../../hooks/activity/useActivitybyCategory"
+import '../styles.css';
+
 const ActivityByCategoryId = () => {
-  const [anActivity, setAnActivity] = useState([])
+
   const {id} = useParams()
+  const { anActivity } = useActivitybyCategory()
+  const { category } = useCategorybyIdAll()
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    const handleGetActivity = async () => {
-      
-      try {
-        const res = await axios.get(
-          `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activities-by-category/${id}`,
-          {headers: 
-            {apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c'},
-          }
-        )
-        console.log(res)
-        setAnActivity(res?.data?.data)
-
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    handleGetActivity()
-  },  [id])
-  console.log(anActivity)
-
+  const handleCategoryActivityChange = (categoryId) => {
+    navigate(`/activities/activityByCategory/${categoryId}`);
+  };
+  console.log("test",category)
   return (
     <>
-        <Navbar />
+
+      <Navbar />
+      <div className="hero-image">
+        <img src={category.imageUrl} className="d-block w-100" alt="slide1"/>
+         <div className="home-banner carousel-caption  fs-2  position-absolute top-50 start-50 translate-middle">
+            <p className="hero-text">to discover {category.name}
+                <CategoryOption handleCategoryActivityChange={handleCategoryActivityChange}/>
+            </p>
+        </div>
+      </div>
 
     {anActivity.length > 0 ? 
     anActivity.map((activity) => 
     (
     <div className="activity-container container-fluid" key={activity.id}>
-      
-
-
-
+ 
       <div className="activity-info-1 d-flex align-items-center justify-content-between">
       <h2 className="activity-title">{activity.title}</h2>     
       <p className="activity-description">{activity.description}</p>
@@ -53,7 +46,6 @@ const ActivityByCategoryId = () => {
       ))}
       </div>
 
-      
       <div className="activity-info-2 d-flex align-items-center justify-content-between">
       <div className="activity-price">
       <p><i className="bi bi-cash"></i>  {Intl.NumberFormat('id-ID', {
@@ -66,7 +58,6 @@ const ActivityByCategoryId = () => {
             }).format(activity.price_discount)}</p>
       </div>
       
-
       <div className="activity-rating">
       <p><i class="bi bi-star-half"></i>   {activity.rating}</p>
       <p><i class="bi bi-chat-dots-fill"></i>   {activity.total_reviews}</p>
@@ -92,10 +83,9 @@ const ActivityByCategoryId = () => {
       </div>
       
       <iframe src={activity.location_maps} title={`${activity.title} Maps Location`}></iframe>
-
   
     </div>
-    )) : <h1>Activity Not Found</h1>}
+    )) : <h1 class="position-absolute top-50 start-50 translate-middle">Activity Not Found</h1>}
     </>
   )
 }

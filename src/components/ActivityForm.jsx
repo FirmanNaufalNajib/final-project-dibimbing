@@ -20,13 +20,14 @@ const ActivityForm = (props) => {
         value={props.description}
         onChange={props.handleDescriptionChange}
       /> <br />
-      <label htmlFor="imageURL">Image URL</label> <br />
+      <label htmlFor="imageURL">Image</label> <br />
       <input
-        type="text"
+        type="file"
         id="imageURL"
-        placeholder="Image URL"
-        value={props.imageURL}
-        onChange={props.handleImageURLChange}
+        accept="image/*"
+        placeholder="Image"
+        //value={props.imageURL}
+        onChange={props.handleFileChange}
       /> <br />
       <label htmlFor="rating">Rating</label> <br />
       <input
@@ -70,7 +71,7 @@ const ActivityForm = (props) => {
         id="facilities"
         placeholder="Facilities"
         value={props.facilities}
-        onChange={props.handlefacilitiesChange}
+        onChange={props.handleFacilitiesChange}
       /> <br />
       <label htmlFor="address">Address</label> <br />
       <input

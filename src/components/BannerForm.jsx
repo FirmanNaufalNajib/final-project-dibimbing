@@ -4,7 +4,7 @@ const BannerForm = (props) => {
 
   return (
     <>
-    <h2>{props.pagesName}</h2>  
+    <h2>{props.namePage}</h2>  
     <p className="id-banner">{props.id}</p>  
       <input
         type="text"
@@ -13,10 +13,11 @@ const BannerForm = (props) => {
         onChange={props.handleTitleChange}
       />
       <input
-        type="text"
-        placeholder="Image URL"
-        value={props.imageURL}
-        onChange={props.handleImageURLChange}
+        type="file"
+        accept="image/*"
+        placeholder="Image"
+        //value={props.imageURL}
+        onChange={props.handleFileChange}
       />
     </>
   )

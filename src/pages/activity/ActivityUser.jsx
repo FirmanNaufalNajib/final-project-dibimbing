@@ -5,36 +5,17 @@ import { useParams } from "react-router-dom"
 import '../styles.css';
 import Navbar from "../../components/Navbar"
 const activityUser = () => {
-  const [anActivity, setAnActivity] = useState([])
+
   const {id} = useParams()
 
-  useEffect(() => {
-    const handleGetActivity = async () => {
-      
-      try {
-        const res = await axios.get(
-          `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activities-by-category/${id}`,
-          {headers: 
-            {apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c'},
-          }
-        )
-        console.log(res)
-        setAnActivity(res?.data?.data)
+ const {anActivity, loading, error} = useActivitybyCategory()
 
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    handleGetActivity()
-  },  [id])
-  
 
   return (
     <>
         <Navbar />
 
     {anActivity.length > 0 ? 
-    
   
     <div className="activity-container container-fluid" key={activity.id}>
       

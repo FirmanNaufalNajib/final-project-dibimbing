@@ -1,70 +1,59 @@
 import React, { useState } from "react";
-import axios from "axios";
 import ActivityForm from "../../components/ActivityForm";
 import CategoryOption from "../../components/CategoryOption";
 import SideBar from "../../components/SideBar";
-
 import useActivityPost from "../../hooks/activity/useActivityPost";
 
 const CreateActivity = () => {
-
+const namePage = "Create Activity"
   const { 
     title,
-    setTitle,
     description,
-    setDescription,
     imageURL,
-    setImageURL,
     price,
-    setPrice,
     price_discount,
-    setPrice_discount,
     rating,
-    setRating,
     total_reviews,
-    setTotal_reviews,
     facilities,
-    setFacilities,
     address,
-    setAddress,
     city,
-    setCity,
     province,
-    setProvince,
     location_map,
-    setLocation_map,
+    categoriesActivity,
+    
     loading,
     message,
-    categoriesActivity,
-    setCategoriesActivity,
+    
+    handleTitleChange,
+    handleDescriptionChange,
+    handleImageURLChange,
+    handlePriceChange,
+    handlePrice_discountChange,
+    handleRatingChange,
+    handleTotal_reviewsChange,
+    handleFacilitiesChange,
+    handleAddressChange,
+    handleCityChange,
+    handleProvinceChange,
+    handleLocation_MapChange,
+    handleCategoryActivityChange,
+    handleFileChange,
+
     handleSubmit,
     navigate
   } = useActivityPost();
 
-  const handleTitleChange = (e) => setTitle(e.target.value)
-  const handleDescriptionChange = (e) => setDescription(e.target.value)
-  const handleImageURLChange = (e) => setImageURL(e.target.value.split(","))
-  const handleRatingChange = (e) => setRating(Number(e.target.value))
-  const handlePriceChange = (e) => setPrice(Number(e.target.value))
-  const handlePrice_discountChange = (e) => setPrice_discount(Number(e.target.value))
-  const handleTotal_reviewsChange = (e) => setTotal_reviews(Number(e.target.value))
-  const handlefacilitiesChange = (e) => setFacilities(e.target.value)
-  const handleAddressChange = (e) => setAddress(e.target.value)
-  const handleCityChange = (e) => setCity(e.target.value)
-  const handleProvinceChange = (e) => setProvince(e.target.value)
-  const handleLocation_MapChange = (e) => setLocation_map(e.target.value)
-  const handleCategoryActivityChange = (value) => setCategoriesActivity(value)
   
   return (
     <div className="edit-banner">
       <div className="page-bar position-fixed top-0 start-0 container">
-      <SideBar />
+      <SideBar namePage={namePage}/>
       </div>
 
-      <div className="form-banner position-fixed top-50 start-50 translate-middle d-flex align-items-center">
+      <div className="form-banner d-flex align-items-center">
 
   <div className="input-banner">
-        <h2>Create Activity</h2>
+        
       <CategoryOption
       handleCategoryActivityChange={handleCategoryActivityChange}
       />
@@ -90,11 +79,12 @@ const CreateActivity = () => {
       handlePriceChange={handlePriceChange}
       handlePrice_discountChange={handlePrice_discountChange}
       handleTotal_reviewsChange={handleTotal_reviewsChange}
-      handlefacilitiesChange={handlefacilitiesChange}
+      handleFacilitiesChange={handleFacilitiesChange}
       handleAddressChange={handleAddressChange}
       handleCityChange={handleCityChange}
       handleProvinceChange={handleProvinceChange}
       handleLocation_MapChange={handleLocation_MapChange}
+      handleFileChange={handleFileChange}
       navigate={navigate}
       />
       

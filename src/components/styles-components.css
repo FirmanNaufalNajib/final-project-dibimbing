@@ -131,7 +131,6 @@ color: blue;
 
 /* Navbar */
 
-/* styles-components.css */
 
 .navbar {
   background-color: #33333360;
@@ -142,33 +141,28 @@ color: blue;
   align-items: center;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  
-
 }
-
 .navbar h1 {
   margin: 0;
   color: #ffffff;;
-  
 }
-
 .navbar-menu {
   display: flex;
 }
-
 .navbar-menu a {
   text-decoration: none;
 }
-
 .navbar-menu h5 {
   margin: 0 10px;
   cursor: pointer;
   text-decoration: none;
   color: #fff;
 }
-
 .navbar-menu h5:hover {
   color: #ffd700; /* Change color on hover */
+}
+.navbar-scroll {
+  background-color: #004d40;
 }
 
 /* Modal  */

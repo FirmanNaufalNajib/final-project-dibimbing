@@ -15,16 +15,18 @@ const CreateBanner = () => {
     message,
     handleTitleChange,
     handleImageURLChange,
-    handleSubmit
+    handleSubmit,
+    setFile,
+    handleFileChange
   } = useBannerPost();
 
-  const pagesName = "Create Banner";
+  const namePage = "Create Banner";
 
   return (
     <div className="create-banner">
 
       <div className="page-bar position-fixed top-0 start-0 container">
-      <SideBar/>
+      <SideBar namePage={namePage}/>
       </div>
       
       <div className="form-banner position-fixed top-50 start-50 translate-middle d-flex align-items-center">
@@ -35,11 +37,11 @@ const CreateBanner = () => {
       
       <div className="input-banner">
       <BannerForm
-        pagesName={pagesName}
+        namePage={namePage}
         title={title}
         imageURL={imageURL}
         handleTitleChange={handleTitleChange}
-        handleImageURLChange={handleImageURLChange}
+        handleFileChange={handleFileChange}
         setTitle={setTitle}
         setImageURL={setImageURL}
       />

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import './styles-components.css'
 import { useNavigate } from "react-router-dom"
-import useLogoutGet from "../hooks/useLogoutGet"
+import useLogoutGet from "../hooks/auth/useLogoutGet"
 const SideBar = (props) => {
   const userLogIn = localStorage.getItem("name")
 
@@ -17,29 +17,29 @@ const SideBar = (props) => {
     <div className="sidebar">
       <h1>{props.namePage}</h1>
       <div className="sidebar-username d-flex">
-      <button><i class="bi bi-arrow-bar-left" ></i></button>
+      <button onClick={handleLogout}><i className="bi bi-arrow-bar-left" ></i></button>
       <p>hai <b>{userLogIn}</b></p>
       </div>
       <p></p>
     <div className="sidebar-menu">
     <Link to="/banner">
-            <i class="bi bi-file-earmark-image"></i>
+            <i className="bi bi-file-earmark-image"></i>
             <h5>Banner</h5>
           </Link>
           <Link to="/promos">
-          <i class="bi bi-megaphone-fill"></i>
+          <i className="bi bi-megaphone-fill"></i>
             <h5>Promo</h5>
           </Link>
           <Link to="/activities">
-          <i class="bi bi-compass"></i>
+          <i className="bi bi-compass"></i>
             <h5>Activity</h5>
           </Link>
           <Link to="/allUser">
-          <i class="bi bi-people-fill"></i>
+          <i className="bi bi-people-fill"></i>
             <h5>User</h5>
           </Link>
           <Link to="/category">
-          <i class="bi bi-tags-fill"></i>
+          <i className="bi bi-tags-fill"></i>
             <h5>Category</h5>
           </Link>
     </div>
@@ -47,7 +47,7 @@ const SideBar = (props) => {
 
   <div className="back">
       <button className="back-button">
-        <i class="bi bi-arrow-counterclockwise" onClick={goBack}>back</i>
+        <i className="bi bi-arrow-counterclockwise" onClick={goBack}>back</i>
       </button>
  </div>
         

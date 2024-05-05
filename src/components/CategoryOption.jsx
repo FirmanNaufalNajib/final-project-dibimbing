@@ -29,17 +29,17 @@ const CategoryOption = (props) => {
 
   return (
     <div className="category-option">
-
-  <select className="category-select" onChange={(e) => props.handleCategoryActivityChange(e.target.value)}>
-  {activitiesById.map((activity) => (
-
-    <option key={activity.id} value={activity.id}>{activity.name}</option>
-
-    
-  ))}
-</select>
-
+    <select 
+      className="category-select" 
+      onChange={(e) => props.handleCategoryActivityChange(e.target.value)}
+    >
+      <option value="">Activities Category</option> {/* Tambahkan opsi pertama di sini */}
+      {activitiesById.map((activity) => (
+        <option key={activity.id} value={activity.id}>{activity.name}</option>
+      ))}
+    </select>
   </div>
+  
 
   );
 }
