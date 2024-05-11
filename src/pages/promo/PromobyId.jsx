@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import SideBar from "../../components/SideBar"
@@ -21,14 +20,14 @@ const PromoById = () => {
 
       <div key={promo.id} className="promo-detail " >
       
-      {/* {role === "admin" ?  */}
+      {role === "admin" ? 
       <div className='page-bar position-fixed' >
         <SideBar namePage="Promo" />
         <Link to={`updatePromo/${id}`}>
         <button className="edit-button">Update Promo!</button>
         </Link>
       </div>
-      {/* : <Navbar/>} */}
+      : <Navbar/>}
 
       <PromoByIdCard 
       promo={promo}

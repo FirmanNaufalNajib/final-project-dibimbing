@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import './styles-components.css'
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const CategoryOption = (props) => {
   const [activitiesById, setActivitiesById] = useState([]);
+  const navigate = useNavigate();
+
+  const handleCategoryActivityChange = (categoryId) => {
+    navigate(`activities/activityByCategory/${categoryId}`);
+  };
 
   useEffect(() => {
     const getActivitiesById = async () => {
@@ -31,9 +36,9 @@ const CategoryOption = (props) => {
     <div className="category-option">
     <select 
       className="category-select" 
-      onChange={(e) => props.handleCategoryActivityChange(e.target.value)}
+      onChange={(e) => handleCategoryActivityChange(e.target.value)}
     >
-      <option value="">Activities Category</option> {/* Tambahkan opsi pertama di sini */}
+      <option value="activity">Activities Category</option> 
       {activitiesById.map((activity) => (
         <option key={activity.id} value={activity.id}>{activity.name}</option>
       ))}

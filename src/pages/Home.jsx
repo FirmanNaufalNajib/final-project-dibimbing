@@ -15,11 +15,7 @@ const Home = () => {
   
   const token = localStorage.getItem("token")
   const name = localStorage.getItem("name")
-  const navigate = useNavigate();
 
-  const handleCategoryActivityChange = (categoryId) => {
-    navigate(`/activities/activityByCategory/${categoryId}`);
-  };
 
   if (!token) {
     return (
@@ -41,17 +37,15 @@ const Home = () => {
 
   return (
     <div className='home-page'>
-     
+       <Navbar />
       <div className="hero-image">
               <img src={'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} className="d-block w-100" alt="slide1"/>
               <div className="home-banner carousel-caption  fs-2  position-absolute top-50 start-50 translate-middle">
-                <p className="hero-text">here's {name} goin to discover everything
-                <CategoryOption
-                handleCategoryActivityChange={handleCategoryActivityChange}/>
-                </p>
+                <p >here's {name} goin to discover everything</p>
+                <CategoryOption/>
             </div>
       </div>
-      <Navbar />
+    
 
 
       <div className='logged-home carousel-caption d-none d-md-block fs-2 text-dark-emphasis position-absolute top-50 start-50 translate-middle rounded-circle'>
