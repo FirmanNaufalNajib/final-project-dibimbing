@@ -12,7 +12,7 @@ import CreateBanner from "../pages/banner/CreateBanner"
 import Banner from "../pages/banner/Banner"
 import UpdateBanner from "../pages/banner/UpdateBanner"
 import Promos from "../pages/promo/Promos"
-import PromoById from "../pages/promo/PromoById"
+//import PromoById from "../pages/promo/PromoById"
 import CreatePromo from "../pages/promo/CreatePromo"
 import UpdatePromo from "../pages/promo/UpdatePromo"
 import Category from "../pages/category/Category"
@@ -88,11 +88,11 @@ export const RouteList = [
     element: <Promos/>
 
   },
-  {
-    path: "/promos/promosById/:id",
-    element: <PromoById/>
+  // {
+  //   path: "/promos/promosById/:id",
+  //   element: <PromoById/>
 
-  },
+  // },
   {
     path: "/promos/createPromo",
     element: <CreatePromo/>
