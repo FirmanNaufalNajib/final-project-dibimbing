@@ -5,14 +5,7 @@ import useRegisterPost from "../../hooks/auth/useRegisterPost"
 const Register = () => {
 
   const {
-    email, 
-    name, 
-    password, 
     notif, 
-    role, 
-    profilePictureUrl, 
-    phoneNumber, 
-    loading, 
     handleSubmit, 
     setEmail, 
     setName, 
@@ -20,7 +13,6 @@ const Register = () => {
     setRole, 
     setprofilePictureUrl, 
     setphoneNumber,
-    imageRegister
   } = useRegisterPost()
 
   const handleEmail = (e) => {   
@@ -47,7 +39,7 @@ const Register = () => {
     <div className="login-page container-fluid">
       
 
-    <img className='login-img position-fixed top-50 start-50 translate-middle' src={imageRegister} alt='login'/>
+    {/* <img className='login-img position-fixed top-50 start-50 translate-middle' src={imageRegister} alt='login'/> */}
       <Navbar/>
 
       <div className="form-login position-fixed top-50 start-50 translate-middle d-flex align-items-center container">

@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 const CategoryForm = (props) => {
   
 
@@ -20,6 +20,13 @@ const CategoryForm = (props) => {
       />
     </>
   )
+}
+
+CategoryForm.propTypes = {
+  namePage: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  handleTitleChange: PropTypes.func.isRequired,
+  handleFileChange: PropTypes.func.isRequired
 }
 
 export default CategoryForm

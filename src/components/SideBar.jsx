@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
-import './styles-components.css'
 import { useNavigate } from "react-router-dom"
 import useLogoutGet from "../hooks/auth/useLogoutGet"
+import PropTypes from 'prop-types'
+import './styles-components.css'
 const SideBar = (props) => {
   const userLogIn = localStorage.getItem("name")
 
@@ -43,31 +44,26 @@ const SideBar = (props) => {
             <h5>Category</h5>
           </Link>
     </div>
-    
+    <div className="back">
+          <button className="back-button">
+            <i className="bi bi-arrow-counterclockwise" onClick={goBack}>back</i>
+          </button>
+    </div>          
+    <div className="sidebar-menu-general">
+      <Link to="/dashboard">
+        <i className="bi bi-pc">Dashboard</i>
+      </Link>
 
-  <div className="back">
-      <button className="back-button">
-        <i className="bi bi-arrow-counterclockwise" onClick={goBack}>back</i>
-      </button>
- </div>
-        
-<div className="sidebar-menu-general">
-  <Link to="/dashboard">
-    <i className="bi bi-pc">Dashboard</i>
-  </Link>
-
-  <Link to="/">
-    <i className="bi bi-pc">Home</i>
-  </Link>
-</div>
-    
-
-
-
-
-
+      <Link to="/">
+        <i className="bi bi-pc">Home</i>
+      </Link>
     </div>
+  </div>
   )
+}
+
+SideBar.propTypes = {
+  namePage: PropTypes.string
 }
 
 export default SideBar

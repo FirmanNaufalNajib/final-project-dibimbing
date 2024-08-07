@@ -1,3 +1,4 @@
+import PropsTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 const CategoryCard = (props) => {
 
@@ -11,12 +12,18 @@ const CategoryCard = (props) => {
           <div className="category-info-2 container">
           <h4>{props.name}</h4>
           <Link to={`categoryDetail/${props.id}`}>
-            <i class="button-category-edit bi bi-card-list d-flex justify-content-end"></i>
+            <i className="button-category-edit bi bi-card-list d-flex justify-content-end"></i>
           </Link>
           </div>
 
         </div>
   )
+}
+
+CategoryCard.propTypes = {
+  id: PropsTypes.number,
+  name: PropsTypes.string,
+  imageUrl: PropsTypes.string
 }
 
 export default CategoryCard

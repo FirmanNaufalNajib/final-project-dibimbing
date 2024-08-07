@@ -1,6 +1,6 @@
 import axios from "axios"
 import SideBar from "../components/SideBar"
-import { useNavigate } from "react-router-dom"
+//import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useEffect } from "react"
@@ -10,18 +10,14 @@ import useActivitiesGet from "../hooks/activity/useActivityGet"
 
 const Dashboard = () => {
 
-  const token = localStorage.getItem("token") 
-  const name = localStorage.getItem("name")
-  const role = localStorage.getItem("role")
-  const navigate = useNavigate();
   const namePage = "Dashboard"
 
   const [banners, setBanners] = useState([]);
   const [allUser, setAllUser] = useState([]);
-  const { activities, loading, error } = useActivitiesGet();
+  const { activities, setError, setLoading } = useActivitiesGet();
   const [categories, setCategories] = useState([])
 
-  const { promos} = usePromoGet();
+  const {promos} = usePromoGet();
 
   useEffect(() => {
     const fetchBanners = async () => {
@@ -40,7 +36,7 @@ const Dashboard = () => {
     };
     
     fetchBanners();
-  }, []);
+  }, [setError, setLoading]);
 
   const handleAllUser = async () => { 
     
@@ -85,6 +81,8 @@ const Dashboard = () => {
     fetchCategories();
   }, []);
 
+  
+
   return (
     <div className="dashboard-page">
     <div className="page-bar position-fixed">
@@ -119,16 +117,16 @@ const Dashboard = () => {
       <div className='promos-list-dashboard container row'>
       <Link to={'/promos'}><h2>Promos</h2></Link>
         {promos.slice(0, 3).map(promo => (
-          <div class="promos-item container justify-content-center card text-bg-transparent" >
+          <div key={promo.id} className="promos-item container justify-content-center card text-bg-transparent" >
             <Link to={`/promos/promosById/${promo.id}`}>
-          <img src={promo.imageUrl} class="promos-image" alt={promo.title}   style={{ maxWidth: '350px' }}/>
-          <div class="card-img-overlay promos-info-1-user">
-            <h5 class="promos-title">{promo.title}</h5>
-            <p class="promos-price">{Intl.NumberFormat('id-ID', {
+          <img src={promo.imageUrl} className="promos-image" alt={promo.title}   style={{ maxWidth: '350px' }}/>
+          <div className="card-img-overlay promos-info-1-user">
+            <h5 className="promos-title">{promo.title}</h5>
+            <p className="promos-price">{Intl.NumberFormat('id-ID', {
               style: 'currency',
               currency: 'IDR',
             }).format(promo.promo_discount_price)}</p>
-            <p class="promos-term"><small>{promo.terms_condition}</small></p>
+            <p className="promos-term"><small>{promo.terms_condition}</small></p>
           </div>
           </Link>
         </div>
@@ -143,7 +141,7 @@ const Dashboard = () => {
       <Link to={'/allUser'}><h2>Users</h2></Link>
             {allUser.slice(0, 3).map((user) => (
       user.role === "user" && (
-          <div className="user-item container d-flex flex-row justify-content-between align-items-center">
+          <div key={user.id} className="user-item container d-flex flex-row justify-content-between align-items-center">
 
             <UserCard
             key={user.id}
@@ -156,11 +154,11 @@ const Dashboard = () => {
             />
             
           <Link to={`/allUser/updateProfile/${user.id}`}>
-          <i class="btn btn-outline-primary bi bi-person-lines-fill">Profile</i>
+          <i className="btn btn-outline-primary bi bi-person-lines-fill">Profile</i>
           </Link>
 
           <Link to={`/allUser/updateUserRole/${user.id}`}>
-          <i class="btn btn-outline-primary bi bi-person-badge">Role</i>
+          <i className="btn btn-outline-primary bi bi-person-badge">Role</i>
           </Link>
       </div>
       )
@@ -179,7 +177,7 @@ const Dashboard = () => {
           <h2>{activity.title}</h2>
           </div>
           <Link to={`/activities/activityDetail/${activity.id}`}>
-             <i class="button-activity-edit bi bi-card-list d-flex justify-content-end"></i>
+             <i className="button-activity-edit bi bi-card-list d-flex justify-content-end"></i>
           </Link>
         </div>
       ))}
@@ -199,7 +197,7 @@ const Dashboard = () => {
           <div className="category-info-2 container">
           <h4>{category.name}</h4>
           <Link to={`/category/categoryDetail/${category.id}`}>
-            <i class="button-category-edit bi bi-card-list d-flex justify-content-end"></i>
+            <i className="button-category-edit bi bi-card-list d-flex justify-content-end"></i>
           </Link>
           </div>
         </div>

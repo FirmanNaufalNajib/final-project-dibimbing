@@ -28,7 +28,7 @@ const usePromoPost = () => {
   const handleTerms_conditionChange = (e) => setTerms_condition(e.target.value)
   
   const handleFileChange = (e) => setFile(e.target.files[0]);
-  ;
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,6 +70,8 @@ const usePromoPost = () => {
             }
           }
         );
+
+      console.log(res);
       
       setTitle("");
       setDescription("");

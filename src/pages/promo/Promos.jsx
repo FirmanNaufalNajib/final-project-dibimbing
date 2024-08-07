@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import SideBar from '../../components/SideBar';
 import usePromoGet from '../../hooks/promo/usePromoGet';
@@ -32,6 +31,7 @@ const Promos = () => {
         ) : (
         <div className='promos-list container row'>
           {promos.map(promo => (
+            <Link to={`/promos/promosById/${promo.id}`} key={promo.id}>
             <PromoCard
             promos={promo}
             key={promo.id}
@@ -40,7 +40,8 @@ const Promos = () => {
             imageUrl={promo.imageUrl}
             promo_discount_price={promo.promo_discount_price}
             terms_condition={promo.terms_condition}
-            />         
+            /> 
+            </Link>        
           ))}
         </div>
         )}

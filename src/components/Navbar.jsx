@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useEffect } from "react"; 
 import useLogoutGet from "../hooks/auth/useLogoutGet"
+import PropTypes from 'prop-types';
 import './styles-components.css'
 
 const Navbar = () => {
@@ -36,19 +37,22 @@ const Navbar = () => {
       <button onClick={handleLogout}><i className="bi bi-arrow-bar-left" ></i></button>
       <p>hai <b>{userLogIn}</b></p>
       </div>
-    <div className="navbar-menu">
+      <div className="navbar-menu">
 
-          <Link to="/promos">
-            <h5>Promo</h5>
-          </Link>
-          <Link to="/activities">
-            <h5>Activity</h5>
-          </Link>
-          
-    </div>
-    
+            <Link to="/promos">
+              <h5>Promo</h5>
+            </Link>
+            <Link to="/activities">
+              <h5>Activity</h5>
+            </Link>
+            
+      </div>  
     </div>
   )
+}
+
+Navbar.propTypes = {
+  handleLogout: PropTypes.func
 }
 
 export default Navbar

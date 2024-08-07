@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
 import axios from 'axios';
+import {useState} from 'react';
 import '../styles.css';
 
 const UploadImage = () => {

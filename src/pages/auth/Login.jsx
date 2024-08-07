@@ -4,7 +4,7 @@ import useLoginPost from "../../hooks/auth/useLoginPost"
 
 const Login = () => {
   
-  const { notif, loading, imageLogin, handleLogin, setEmail, setPassword } = useLoginPost()
+  const { notif, loading, handleLogin, setEmail, setPassword } = useLoginPost()
 
   const handleEmail = (e) => { 
     setEmail(e.target.value)
@@ -17,7 +17,7 @@ const Login = () => {
     <>
       <div className="login-page container-fluid" >
            
-        <img className='login-img position-fixed top-50 start-50 translate-middle' src={imageLogin} alt='login'/>
+        {/* <img className='login-img position-fixed top-50 start-50 translate-middle' src={imageLogin} alt='login'/> */}
           <Navbar/>
         <div className="form-login position-fixed top-50 start-50 translate-middle d-flex align-items-center container">
           {!!notif.length && <h3>{notif}</h3>}

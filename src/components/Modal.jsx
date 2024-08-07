@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-
+import PropTypes from 'prop-types';
 
 const Modal = (props) => {
   
@@ -32,11 +32,15 @@ const Modal = (props) => {
       </div> : 
       <div>
       <h2>{props.message}</h2>
-      </div>}
-      
+      </div>}     
     </aside>
-  
-
   )
 }
+
+Modal.propTypes = {
+  message: PropTypes.string,
+  handleConfirm: PropTypes.func,
+  handleCancel: PropTypes.func
+}
+
 export default Modal

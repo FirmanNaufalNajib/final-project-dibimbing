@@ -42,7 +42,7 @@ const useActivitybyIdAll = () => {
   const handlePriceChange = (e) => setPrice(Number(e.target.value))
   const handlePrice_discountChange = (e) => setPrice_discount(Number(e.target.value))
   const handleTotal_reviewsChange = (e) => setTotal_reviews(Number(e.target.value))
-  const handleFacilitiesChange = (e) => setfacilities(e.target.value)
+  const handleFacilitiesChange = (e) => setFacilities(e.target.value)
   const handleAddressChange = (e) => setAddress(e.target.value)
   const handleCityChange = (e) => setCity(e.target.value)
   const handleProvinceChange = (e) => setProvince(e.target.value)
@@ -134,6 +134,8 @@ const useActivitybyIdAll = () => {
             }
         }
       );
+
+      console.log(res.data)
       
       setTitle("");
       setDescription("");

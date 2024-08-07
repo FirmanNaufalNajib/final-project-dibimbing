@@ -1,9 +1,8 @@
-import { useState } from "react"
-import { useEffect } from "react"
-import axios from "axios"
+
 import { useParams } from "react-router-dom"
 import '../styles.css';
 import Navbar from "../../components/Navbar"
+import useActivitybyCategory from "../../hooks/activity/useActivitybyCategory"
 const activityUser = () => {
 
   const {id} = useParams()

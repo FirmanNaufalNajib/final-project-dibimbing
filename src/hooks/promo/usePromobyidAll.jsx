@@ -33,7 +33,7 @@ const usePromobyidAll = () => {
   const handlePromo_discount_priceChange = (e) => setPromo_discount_price(Number(e.target.value))
   const handlePromo_codeChange = (e) => setPromo_code(e.target.value)
   const handleTerms_conditionChange = (e) => setTerms_condition(e.target.value)
-  const handleImageUrlChange = (e) => setImageURL(e.target.value);
+  const handleImageUrlChange = (e) => setImageUrl(e.target.value);
   const handleFileChange = (e) => setFile(e.target.files[0]);
 
   useEffect(() => {
@@ -174,6 +174,12 @@ const usePromobyidAll = () => {
     setFile,
     uploaded,
     setUploaded,
+    loading,
+    setLoading,
+    message,
+    setMessage,
+    error,
+    setError,
 
     handleTitleChange,
     handleImageUrlChange,

@@ -1,11 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import usePromoGet from '../hooks/promo/usePromoGet';
 import useActivitiesGet from '../hooks/activity/useActivityGet';
 import useLoggeduserGet from '../hooks/user/useLoggeduserGet';
 import CategoryOption from '../components/CategoryOption';
-import { useNavigate } from 'react-router-dom';
+import UserCard from '../components/UserCard';
 
 const Home = () => {
 
@@ -39,9 +38,9 @@ const Home = () => {
     <div className='home-page'>
        <Navbar />
       <div className="hero-image">
-              <img src={'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} className="d-block w-100" alt="slide1"/>
+              {/* <img src={'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} className="d-block w-100" alt="slide1"/> */}
               <div className="home-banner carousel-caption  fs-2  position-absolute top-50 start-50 translate-middle">
-                <p >here's {name} goin to discover everything</p>
+                <p>here&apos;s {name} goin to discover everything</p>
                 <CategoryOption/>
             </div>
       </div>
@@ -54,7 +53,7 @@ const Home = () => {
         logUser.slice(0, 3).map((user) => {
           if (user.role === "user") {
             return (
-              <div className="user-item container d-flex flex-row justify-content-between align-items-center">
+              <div key={user.id} className="user-item container d-flex flex-row justify-content-between align-items-center">
 
                 <UserCard
                   key={user.id}
@@ -103,7 +102,7 @@ const Home = () => {
       <Link to={`/promos`}><h3>Get Promo!</h3></Link>
       <div className="promos-list-home container row">
         {promos.slice(0, 3).map(promo => (
-          <div className="promos-item container justify-content-center card text-bg-transparent" >
+          <div key={promo.id} className="promos-item container justify-content-center card text-bg-transparent" >
             <Link to={`promosById/${promo.id}`}>
           <img src={promo.imageUrl} className="promos-image" alt={promo.title}   style={{ maxWidth: '350px' }}/>
           <div className="promos-info-1-user card-img-overlay">

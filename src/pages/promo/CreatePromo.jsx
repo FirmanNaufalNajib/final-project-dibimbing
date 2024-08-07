@@ -1,4 +1,3 @@
-import React from "react";
 import PromoForm from "../../components/PromoForm";
 import SideBar from "../../components/SideBar";
 import usePromoPost from "../../hooks/promo/usePromoPost";

@@ -8,7 +8,7 @@ const useLoginPost = () => {
   const [password, setPassword] = useState("") 
   const [notif, setNotif] = useState("")
   const [loading, setLoading] = useState(false)
-  const imageLogin = 'https://a.cdn-hotels.com/gdcs/production64/d1688/8eac9694-13d8-4228-bf14-9493e562ad66.jpg'
+  //const imageLogin = 'https://a.cdn-hotels.com/gdcs/production64/d1688/8eac9694-13d8-4228-bf14-9493e562ad66.jpg'
 
   const navigate = useNavigate()  
 
@@ -29,7 +29,7 @@ const useLoginPost = () => {
       '24405e01-fbc1-45a5-9f5a-be13afcd757c', 
     }
       })
-      //console.log(res.data)
+      console.log(res.data)
       localStorage.setItem("token", res.data?.token)
       localStorage.setItem("name", res.data?.data?.name)
       localStorage.setItem("role", res.data?.data?.role)
@@ -55,7 +55,7 @@ const useLoginPost = () => {
   }
 
 
-  return { email, password, notif, loading, imageLogin, handleLogin, setEmail, setPassword }
+  return { email, password, notif, loading, handleLogin, setEmail, setPassword }
 }
 
 export default useLoginPost

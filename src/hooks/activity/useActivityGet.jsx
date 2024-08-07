@@ -25,7 +25,7 @@ const useActivitiesGet = () => {
     fetchActivities();
   }, []);
 
-  return { activities, loading, error };
+  return { activities, loading, error,  setActivities, setError, setLoading};
 };
 
 export default useActivitiesGet;

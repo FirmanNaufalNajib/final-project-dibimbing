@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const PromoForm = (props) => {
   
   return (
@@ -5,7 +7,7 @@ const PromoForm = (props) => {
     <div className="promo-form-card">
     <h2>{props.namePage}</h2>
 
-    <label for="title">Title:</label> <br />
+    <label htmlFor="title">Title:</label> <br />
     <input
       type="text"
       id="title"
@@ -15,7 +17,7 @@ const PromoForm = (props) => {
       onChange={props.handleTitleChange}
     /><br />
 
-    <label for="description">Description:</label><br />
+    <label htmlFor="description">Description:</label><br />
     <input
       type="text"
       id="description"
@@ -24,7 +26,7 @@ const PromoForm = (props) => {
       onChange={props.handleDescriptionChange}
     /><br />
 
-    <label for="imageURL">Image:</label><br />
+    <label htmlFor="imageURL">Image:</label><br />
     <input
       type="file"
       id="imageURL"
@@ -34,7 +36,7 @@ const PromoForm = (props) => {
       onChange={props.handleFileChange}
     /><br />
 
-    <label for="termsCondition">Terms and Condition:</label><br />
+    <label htmlFor="termsCondition">Terms and Condition:</label><br />
     <input
       type="text"
       id="termsCondition"
@@ -43,7 +45,7 @@ const PromoForm = (props) => {
       onChange={props.handleTerms_conditionChange}
     /><br />
 
-    <label for="promoCode">Promo Code:</label><br />
+    <label htmlFor="promoCode">Promo Code:</label><br />
     <input
       type="text"
       id="promoCode"
@@ -52,7 +54,7 @@ const PromoForm = (props) => {
       onChange={props.handlePromo_codeChange}
     /><br />
 
-    <label for="promoDiscountPrice">Promo Discount Price:</label><br />
+    <label htmlFor="promoDiscountPrice">Promo Discount Price:</label><br />
     <input
       type="number"
       id="promoDiscountPrice"
@@ -61,7 +63,7 @@ const PromoForm = (props) => {
       onChange={props.handlePromo_discount_priceChange}
     /><br />
 
-    <label for="minimumClaimPrice">Minimum Claim Price:</label><br />
+    <label htmlFor="minimumClaimPrice">Minimum Claim Price:</label><br />
     <input
       type="number"
       id="minimumClaimPrice"
@@ -70,8 +72,25 @@ const PromoForm = (props) => {
       onChange={props.handleMinimum_claim_priceChange}
     /><br />
   </div>
-
   )
+}
+
+PromoForm.propTypes = {
+  namePage: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  imageURL: PropTypes.string.isRequired,
+  terms_condition: PropTypes.string.isRequired,
+  promo_code: PropTypes.string.isRequired,
+  promo_discount_price: PropTypes.string.isRequired,
+  minimum_claim_price: PropTypes.string.isRequired,
+  handleTitleChange: PropTypes.func.isRequired,
+  handleDescriptionChange: PropTypes.func.isRequired,
+  handleFileChange: PropTypes.func.isRequired,
+  handleTerms_conditionChange: PropTypes.func.isRequired,
+  handlePromo_codeChange: PropTypes.func.isRequired,
+  handlePromo_discount_priceChange: PropTypes.func.isRequired,
+  handleMinimum_claim_priceChange: PropTypes.func.isRequired
 }
 
 export default PromoForm

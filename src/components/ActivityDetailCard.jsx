@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
+
 
 const ActivityDetailCard = (props) => {
 
   return (
-    <div className="category-activity-content container d-flex align-items-start" key={props.key}>
+    <div className="category-activity-content container d-flex align-items-start" key={props.id}>
 
     <div className="category-activity-list row position-fixed">
       <img src={props.imageUrls} alt={props.categoryName}/>
@@ -21,7 +23,7 @@ const ActivityDetailCard = (props) => {
             <td>
               {props.imageUrls && props.imageUrls.map((url) => 
               (
-                <img src={url} alt={props.title} style={{ maxWidth: '300px' }} />
+                <img key={url} src={url} alt={props.title} style={{ maxWidth: '300px' }} />
               ))}
             </td>
           </tr>
@@ -88,6 +90,32 @@ const ActivityDetailCard = (props) => {
     </div>
   )
 }
+
+ActivityDetailCard.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  imageUrls: PropTypes.array,
+  price: PropTypes.number,
+  price_discount: PropTypes.number,
+  rating: PropTypes.number,
+  total_reviews: PropTypes.number,
+  facilities: PropTypes.string,
+  address: PropTypes.string,
+  province: PropTypes.string,
+  city: PropTypes.string,
+  location_maps: PropTypes.string,
+  createdAt: PropTypes.string,
+  updatedAt: PropTypes.string,
+  categoryName: PropTypes.string,
+  categoryId: PropTypes.number,
+  categoryImageUrl: PropTypes.string,
+  categoryCreatedAt: PropTypes.string,
+  categoryUpdatedAt: PropTypes.string,
+}
+
+
+
 
 
 export default ActivityDetailCard

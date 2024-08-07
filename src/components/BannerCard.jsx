@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 const BannerCard = (props) => {
 
   return (
@@ -19,6 +21,13 @@ const BannerCard = (props) => {
 
 </div>
   )
+}
+
+BannerCard.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  imageUrl: PropTypes.string,
+  updatedAt: PropTypes.string
 }
 
 export default BannerCard

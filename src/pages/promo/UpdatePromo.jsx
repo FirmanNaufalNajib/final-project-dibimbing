@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
 import PromoForm from "../../components/PromoForm";
 import SideBar from "../../components/SideBar";
-import '../styles.css';
-import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal";
 import { close } from '../../features/modalSlice'
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import usePromobyidAll from "../../hooks/promo/usePromobyidAll";
+import '../styles.css';
 
 
 const UpdatePromo = () => {
@@ -46,7 +43,7 @@ const UpdatePromo = () => {
   const handleCancel = () => {
     dispatch(close());
   };
-  const clearItemAndCloseModal = () => {; 
+  const clearItemAndCloseModal = () => { 
     setIsModalOpen(true); }
 
   if (loading) return <p>Loading...</p>;
@@ -59,7 +56,7 @@ const UpdatePromo = () => {
       {isModalOpen && <Modal message={message} handleConfirm={handleConfirm} handleCancel={handleCancel} isOpen={isModalOpen} onConfirm={clearItemAndCloseModal} onCancel={() => setIsModalOpen(false)} />}
       <div className="page-bar position-fixed top-0 start-0 container">
       <SideBar namePage={namePage}/>
-      <button class="delete-button btn btn-danger" onClick={() => setIsModalOpen(true)}><i className=" bi bi-trash3"></i>Delete Promo</button>
+      <button className="delete-button btn btn-danger" onClick={() => setIsModalOpen(true)}><i className=" bi bi-trash3"></i>Delete Promo</button>
       </div>
 
       <div className="form-banner">

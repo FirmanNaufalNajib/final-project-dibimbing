@@ -1,4 +1,5 @@
 
+import PropTypes from 'prop-types';
 const ActivityForm = (props) => { 
 
   return (
@@ -108,6 +109,33 @@ const ActivityForm = (props) => {
       </div>
     </div>
   )
+}
+
+ActivityForm.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  imageURL: PropTypes.string,
+  rating: PropTypes.number,
+  price: PropTypes.number,
+  price_discount: PropTypes.number,
+  total_reviews: PropTypes.number,
+  facilities: PropTypes.string,
+  address: PropTypes.string,
+  city: PropTypes.string,
+  province: PropTypes.string,
+  location_map: PropTypes.string,
+  handleTitleChange: PropTypes.func,
+  handleDescriptionChange: PropTypes.func,
+  handleFileChange: PropTypes.func,
+  handleRatingChange: PropTypes.func,
+  handlePriceChange: PropTypes.func,
+  handlePrice_discountChange: PropTypes.func,
+  handleTotal_reviewsChange: PropTypes.func,
+  handleFacilitiesChange: PropTypes.func,
+  handleAddressChange: PropTypes.func,
+  handleCityChange: PropTypes.func,
+  handleProvinceChange: PropTypes.func,
+  handleLocation_MapChange: PropTypes.func,
 }
 
 export default ActivityForm

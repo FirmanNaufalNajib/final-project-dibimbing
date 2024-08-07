@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 
 const BannerForm = (props) => {
   
-
   return (
     <>
     <h2>{props.namePage}</h2>  
@@ -21,6 +21,15 @@ const BannerForm = (props) => {
       />
     </>
   )
+}
+
+BannerForm.propTypes = {
+  namePage: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  imageURL: PropTypes.string.isRequired,
+  handleTitleChange: PropTypes.func.isRequired,
+  handleFileChange: PropTypes.func.isRequired
 }
 
 export default BannerForm

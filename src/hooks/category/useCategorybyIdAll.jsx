@@ -125,6 +125,8 @@ const useCategorybyIdAll = () => {
               }
           }
         );
+
+        console.log(res.data)
         
         setMessage("Category berhasil dihapus");
         dispatch(close());

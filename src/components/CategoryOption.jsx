@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import './styles-components.css'
 import { useNavigate } from "react-router-dom";
 
 
-const CategoryOption = (props) => {
+const CategoryOption = () => {
   const [activitiesById, setActivitiesById] = useState([]);
   const navigate = useNavigate();
 
