@@ -1,5 +1,5 @@
 
-import { useParams, useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Navbar from "../../components/Navbar"
 import CategoryOption from "../../components/CategoryOption"
 import useCategorybyIdAll from "../../hooks/category/useCategorybyIdAll"
@@ -8,7 +8,7 @@ import '../styles.css';
 
 const ActivityByCategoryId = () => {
 
-  const {id} = useParams()
+  //const {id} = useParams()
   const { anActivity } = useActivitybyCategory()
   const { category } = useCategorybyIdAll()
   const navigate = useNavigate()
@@ -42,7 +42,7 @@ const ActivityByCategoryId = () => {
 
       <div className="activity-images">
       {activity.imageUrls && activity.imageUrls.map((url) => 
-      (<img className="activity-image" src={url} alt={activity.title} style={{ maxWidth: '300px' }} />
+      (<img key={url} className="activity-image" src={url} alt={activity.title} style={{ maxWidth: '300px' }} />
       ))}
       </div>
 
@@ -52,26 +52,26 @@ const ActivityByCategoryId = () => {
               style: 'currency',
               currency: 'IDR',
             }).format(activity.price)}</p>
-      <p><i class="bi bi-percent"></i>  {Intl.NumberFormat('id-ID', {
+      <p><i className="bi bi-percent"></i>  {Intl.NumberFormat('id-ID', {
               style: 'currency',
               currency: 'IDR',
             }).format(activity.price_discount)}</p>
       </div>
       
       <div className="activity-rating">
-      <p><i class="bi bi-star-half"></i>   {activity.rating}</p>
-      <p><i class="bi bi-chat-dots-fill"></i>   {activity.total_reviews}</p>
+      <p><i className="bi bi-star-half"></i>   {activity.rating}</p>
+      <p><i className="bi bi-chat-dots-fill"></i>   {activity.total_reviews}</p>
       </div>
       </div>
       
       <div className="activity-info-3">
       <div >
       <h5>Facilites</h5>
-      <p><i class="bi bi-badge-wc-fill"></i>{activity.facilities}</p>
+      <p><i className="bi bi-badge-wc-fill"></i>{activity.facilities}</p>
       </div>
 
       <div className="activity-location d-flex">
-      <i class="bi bi-geo-alt-fill"></i>
+      <i className="bi bi-geo-alt-fill"></i>
       <div className="activity-location-data">
       <h5>Address</h5>
       <p>{activity.address}</p>
@@ -85,7 +85,7 @@ const ActivityByCategoryId = () => {
       <iframe src={activity.location_maps} title={`${activity.title} Maps Location`}></iframe>
   
     </div>
-    )) : <h1 class="position-absolute top-50 start-50 translate-middle">Activity Not Found</h1>}
+    )) : <h1 className="position-absolute top-50 start-50 translate-middle">Activity Not Found</h1>}
     </>
   )
 }

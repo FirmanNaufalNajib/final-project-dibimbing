@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import axios from "axios";
 import CategoryForm from "../../components/CategoryForm";
 import SideBar from "../../components/SideBar";
 import useCategoryPost from "../../hooks/category/useCategoryPost";
@@ -10,18 +8,12 @@ const CreateCategory = () => {
 
   const {
     title,
-    setTitle,
     imageURL,
-    setImageURL,
     loading,
     message,
     handleTitleChange,
     handleImageURLChange,
     handleSubmit,
-    file,
-    setFile,
-    uploaded,
-    setUploaded,
     handleFileChange 
   } = useCategoryPost();
 

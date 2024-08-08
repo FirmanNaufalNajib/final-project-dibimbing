@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { close } from "../../features/modalSlice";
@@ -8,7 +8,7 @@ import Modal from "../../components/Modal";
 import useCategorybyIdAll from "../../hooks/category/useCategorybyIdAll";
 
 
-const updateCategory = () => {
+const UpdateCategory = () => {
   const namePage = "Update Category";
   
   //params
@@ -37,7 +37,7 @@ const updateCategory = () => {
   const handleCancel = () => {
     dispatch(close());
   };
-  const clearItemAndCloseModal = () => {; 
+  const clearItemAndCloseModal = () => { 
     setIsModalOpen(true); }
 
   console.log(isModalOpen)
@@ -52,7 +52,7 @@ const updateCategory = () => {
       </section>
       <div className="page-bar position-fixed top-0 start-0 container">
         <SideBar namePage={namePage}/>
-        <button class=" delete-button btn btn-danger" onClick={() => setIsModalOpen(true)}><i className=" bi bi-trash3"></i>Delete Category</button>
+        <button className=" delete-button btn btn-danger" onClick={() => setIsModalOpen(true)}><i className=" bi bi-trash3"></i>Delete Category</button>
       </div>
       
       <div className="form-category d-flex align-items-center">
@@ -78,4 +78,4 @@ const updateCategory = () => {
   );
 };
 
-export default updateCategory;
+export default UpdateCategory;

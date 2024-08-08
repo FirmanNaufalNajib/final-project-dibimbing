@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import axios from "axios";
 import BannerForm from "../../components/BannerForm";
 import SideBar from "../../components/SideBar";
 import '../styles.css';
@@ -14,9 +12,7 @@ const CreateBanner = () => {
     loading,
     message,
     handleTitleChange,
-    handleImageURLChange,
     handleSubmit,
-    setFile,
     handleFileChange
   } = useBannerPost();
 

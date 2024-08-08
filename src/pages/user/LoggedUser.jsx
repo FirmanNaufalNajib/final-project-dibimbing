@@ -4,7 +4,7 @@ import useLoggeduserGet from "../../hooks/user/useLoggeduserGet";
 
 const LoggedUsers = () => {
 
-  const { logUser, setLogUser } = useLoggeduserGet();
+  const { logUser } = useLoggeduserGet();
 
 return (
   <>
@@ -27,7 +27,7 @@ return (
       logUser.map((user) => {
         if (user.role === "user") {
           return (
-            <div className="user-item container d-flex flex-row justify-content-between align-items-center">
+            <div key={user.id} className="user-item container d-flex flex-row justify-content-between align-items-center">
 
               <UserCard
                 key={user.id}

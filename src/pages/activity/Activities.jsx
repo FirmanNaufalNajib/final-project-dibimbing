@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import SideBar from '../../components/SideBar';
 import Navbar from '../../components/Navbar';
@@ -14,7 +13,7 @@ const Activities = () => {
   const role = localStorage.getItem("role")
 
   return (
-    <div lassName="activity-page d-flex">
+    <div className="activity-page d-flex">
 
 {role === "admin" ? 
       <div className='page-bar position-fixed' >

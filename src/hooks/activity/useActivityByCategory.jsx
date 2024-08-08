@@ -29,7 +29,9 @@ const useActivitybyCategory = () => {
     fetchActivitiesByCategory();
   }, [id]);
 
-  return { anActivity, loading, error };
+  console.log(anActivity)
+
+  return { anActivity, loading, error, setAnActivity, setError, setLoading };
 };
 
 export default useActivitybyCategory;

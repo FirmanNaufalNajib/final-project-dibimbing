@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import ActivityForm from "../../components/ActivityForm";
 import CategoryOption from "../../components/CategoryOption";
 import SideBar from "../../components/SideBar";

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+//import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import SideBar from "../../components/SideBar"
 import useActivitybyIdAll from "../../hooks/activity/useActivitybyIdAll"
@@ -6,7 +6,7 @@ import ActivityDetailCard from "../../components/ActivityDetailCard"
 
 const ActivityDetail = () => {
   const namePage = "Activity Detail"
-  const {id} = useParams()
+  //const {id} = useParams()
   const { activity } = useActivitybyIdAll()
 
   return (

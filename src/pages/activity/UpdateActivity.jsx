@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+
+import { useState } from "react";
+//import { useParams } from "react-router-dom";
 import CategoryOption from "../../components/CategoryOption";
 import SideBar from "../../components/SideBar";
 import ActivityForm from "../../components/ActivityForm";
@@ -51,7 +51,7 @@ const UpdateActivity = () => {
     handleDelete
   } = useActivitybyIdAll();
 
-  const {id} = useParams()
+  //const {id} = useParams()
 
   const handleConfirm = () => {
     handleDelete() 
@@ -59,7 +59,7 @@ const UpdateActivity = () => {
   const handleCancel = () => {
     dispatch(close());
   };
-  const clearItemAndCloseModal = () => {; 
+  const clearItemAndCloseModal = () => { 
     setIsModalOpen(true); }
 
   console.log(isModalOpen)
@@ -74,7 +74,7 @@ const UpdateActivity = () => {
   </section>
    <div className="page-bar position-fixed top-0 start-0 container">
       <SideBar namePage={namePage}/>
-      <button class=" delete-button btn btn-danger" onClick={() => setIsModalOpen(true)}><i className=" bi bi-trash3"></i>Delete Activity</button>
+      <button className=" delete-button btn btn-danger" onClick={() => setIsModalOpen(true)}><i className=" bi bi-trash3"></i>Delete Activity</button>
       </div>
       
 

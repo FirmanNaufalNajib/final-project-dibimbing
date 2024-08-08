@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import SideBar from "../../components/SideBar";
 import BannerForm from "../../components/BannerForm";
@@ -35,7 +35,7 @@ const UpdateBanner = () => {
   const handleCancel = () => {
     dispatch(close());
   };
-  const clearItemAndCloseModal = () => {; 
+  const clearItemAndCloseModal = () => { 
     setIsModalOpen(true); }
 
  
@@ -49,7 +49,7 @@ const UpdateBanner = () => {
       </section>
       <div className="page-bar container">
         <SideBar namePage={namePage} />
-        <button class=" delete-button btn btn-danger" onClick={() => setIsModalOpen(true)}><i className=" bi bi-trash3"></i>Delete Banner</button>
+        <button className=" delete-button btn btn-danger" onClick={() => setIsModalOpen(true)}><i className=" bi bi-trash3"></i>Delete Banner</button>
       </div>
 
       <div className="form-banner d-flex align-items-center">

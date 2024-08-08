@@ -33,7 +33,7 @@ const UpdateProfile = () => {
       </div >
 
       {sortArray.map(user => (
-        <div className="form-updateProfile">
+        <div key={user.id} className="form-updateProfile">
         {!!notif.length && <h3>{notif}</h3>}
         <p className="input-id">{id}</p>
         <div className="input-updateProfile">
